@@ -1,0 +1,8 @@
+operações comparação( < > == != )
+opearações atribuição|(=)
+operações aritmeticas (+ - * / %)
+operações logicas (e ou nao)
+operações unitarios( c=10, c=-10)
+
+estrutura de repetição - (enquanto)
+estrutura de condição (se caso)

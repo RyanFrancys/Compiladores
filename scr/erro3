@@ -1,0 +1,4 @@
+eu="Ryan";
+if(nome=="ryan"){
+    mostra "nome do sujeito é ryan!";
+}

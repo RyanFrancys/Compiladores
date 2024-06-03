@@ -1,0 +1,26 @@
+a=-10;
+b=20;
+d=0;
+c=(a-b)*d;
+c=(1+2*(3/4));
+boleano=VERDADE;
+
+se(boleano){
+    mostra a;
+}
+
+
+enquanto((1<a) E (2>B)){
+    mostra "Condição Verdadeira!";
+}
+
+loop{
+    se((a<1) OU ((b<10)E(a!=b))){
+        mostra "É válido";    
+    }senao{
+        mostra "Não é válido";
+        a=a-1;
+        b=b-1;
+    }
+}
+

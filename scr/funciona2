@@ -1,0 +1,40 @@
+salario=1600.00;
+taxa_de_lucro=1.45;
+
+ps4="Playstation 4";
+ps4_preco=2765.45*taxa_de_lucro;
+
+ps2="Playstation 2";
+ps2_preco=265.45*taxa_de_lucro;
+
+loja_aberta=VERDADE;
+cliente_na_loja=Falso;
+
+loop{
+    se(salario>ps4_preco){
+        mostra "Pode comprar o ";
+        mostra ps4;
+        mostra "! \n";
+    }senao{
+        se(salario>ps2_preco){
+            mostra "Pode Comprar o\n";
+            mostra ps2;
+            mostra "!\n";
+        }senao{
+            se(salario==(ps4_preco OU ps2_preco)){
+                mostra "No preço Certo Para vocẽ";
+            }senao{
+                mostra "Tentaremos melhorar nosso preço!";
+            }
+        }    
+
+    }
+    enquanto(loja_aberta OU cliente_na_loja){
+        se(loja_aberta){
+            mostra "Desejados Clientes, Sejam Bem-Vindos!";
+        }
+        se(cliente_na_loja E loja_aberta){
+            mostra "Desejados Clientes, !";
+        }
+    }
+}

@@ -1,0 +1,40 @@
+// comentario
+
+b=-10.1;
+a=1.;
+a=2*(9*10);
+a=a+10;
+acasd=-1.;
+c=a+b;
+mostra a;
+c=9;
+mostra "palavras";
+mostra (1+2+2);
+mostra (1*2/2);
+a = VERDADE;
+a = FALSO;
+
+b = FALSO;
+se(a<b) {
+a=10;
+a=20;
+c=true;
+}
+    se(c<10){
+        mostra "c é menor que 10";
+        c=c-1;
+    }senao{
+        mostra "c não é menor que 10";
+    }
+
+enquanto((a==c) OU (a<b)){
+    mostra "Olá Mundo! 1 ";
+}
+
+loop{
+    mostra "Olá Mundo! 2";
+}
+
+enquanto((c>5) E ((c<10) OU (c<39))){
+    a=10;
+}
