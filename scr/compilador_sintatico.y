@@ -1,15 +1,20 @@
 %{
-    int yyerror(const char *s);
-    int yylex(void);
+#include "nodes.h"
+
+int yyerror(const char *s);
+int yylex(void);
 %}
 
 %define parse.error verbose
 
-%token TOK_ID
-%token TOK_PF
-%token TOK_INTEIRO
-%token TOK_PALAVRA
-%token TOK_BOLEANO
+%union { 
+    char *str;
+    int itg;
+    double flt;
+    Node *node;
+}
+
+%token TOK_ID TOK_PF TOK_INTEIRO TOK_PALAVRA TOK_BOLEANO
 
 %token TOK_MOSTRA
 %token TOK_ENQUANTO
@@ -18,18 +23,22 @@
 %token TOK_CASO
 %token TOK_LOOP
 
-
 %token TOK_E
 %token TOK_OU
 %token TOK_NAO
 %token TOK_IGUAL
 %token TOK_DIFERENTE
 
+%type<str> TOK_ID
+%type<itg> TOK_INTEIRO
+%type<flt> TOK_PF
+%type<node> globals global cmprt expr term factor unary
+
 %start program
 
 %%
 
-program : globals;
+program : globals       {};
 
 globals: global globals{}
         |global {}
@@ -39,7 +48,7 @@ global: TOK_ID '=' expr ';' {}
         |TOK_SE  cmprt  '{' globals '}' {}
         |TOK_SE  cmprt  '{' globals '}' TOK_SENAO '{' globals '}'  {}
         |TOK_ENQUANTO  cmprt '{' globals '}' {}
-        |TOK_LOOP '{' globals'}'
+        |TOK_LOOP '{' globals'}'        {}
 
 cmprt:  '(' cmprt TOK_E cmprt ')' {}
         |'(' cmprt TOK_OU  cmprt ')' {}

@@ -69,10 +69,12 @@
 /* First part of user prologue.  */
 #line 1 "compilador_sintatico.y"
 
-    int yyerror(const char *s);
-    int yylex(void);
+#include "nodes.h"
 
-#line 76 "compilador_sintatico.tab.c"
+int yyerror(const char *s);
+int yylex(void);
+
+#line 78 "compilador_sintatico.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -527,10 +529,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    32,    32,    34,    35,    37,    38,    39,    40,    41,
-      42,    44,    45,    46,    47,    48,    49,    50,    52,    53,
-      54,    56,    57,    58,    60,    61,    62,    63,    64,    65,
-      66,    68,    69
+       0,    41,    41,    43,    44,    46,    47,    48,    49,    50,
+      51,    53,    54,    55,    56,    57,    58,    59,    61,    62,
+      63,    65,    66,    67,    69,    70,    71,    72,    73,    74,
+      75,    77,    78
 };
 #endif
 
@@ -1404,182 +1406,194 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 2: /* program: globals  */
+#line 41 "compilador_sintatico.y"
+                        {}
+#line 1413 "compilador_sintatico.tab.c"
+    break;
+
   case 3: /* globals: global globals  */
-#line 34 "compilador_sintatico.y"
+#line 43 "compilador_sintatico.y"
                        {}
-#line 1411 "compilador_sintatico.tab.c"
+#line 1419 "compilador_sintatico.tab.c"
     break;
 
   case 4: /* globals: global  */
-#line 35 "compilador_sintatico.y"
+#line 44 "compilador_sintatico.y"
                 {}
-#line 1417 "compilador_sintatico.tab.c"
+#line 1425 "compilador_sintatico.tab.c"
     break;
 
   case 5: /* global: TOK_ID '=' expr ';'  */
-#line 37 "compilador_sintatico.y"
+#line 46 "compilador_sintatico.y"
                             {}
-#line 1423 "compilador_sintatico.tab.c"
+#line 1431 "compilador_sintatico.tab.c"
     break;
 
   case 6: /* global: TOK_MOSTRA factor ';'  */
-#line 38 "compilador_sintatico.y"
+#line 47 "compilador_sintatico.y"
                                {}
-#line 1429 "compilador_sintatico.tab.c"
+#line 1437 "compilador_sintatico.tab.c"
     break;
 
   case 7: /* global: TOK_SE cmprt '{' globals '}'  */
-#line 39 "compilador_sintatico.y"
+#line 48 "compilador_sintatico.y"
                                         {}
-#line 1435 "compilador_sintatico.tab.c"
+#line 1443 "compilador_sintatico.tab.c"
     break;
 
   case 8: /* global: TOK_SE cmprt '{' globals '}' TOK_SENAO '{' globals '}'  */
-#line 40 "compilador_sintatico.y"
+#line 49 "compilador_sintatico.y"
                                                                    {}
-#line 1441 "compilador_sintatico.tab.c"
+#line 1449 "compilador_sintatico.tab.c"
     break;
 
   case 9: /* global: TOK_ENQUANTO cmprt '{' globals '}'  */
-#line 41 "compilador_sintatico.y"
+#line 50 "compilador_sintatico.y"
                                              {}
-#line 1447 "compilador_sintatico.tab.c"
+#line 1455 "compilador_sintatico.tab.c"
+    break;
+
+  case 10: /* global: TOK_LOOP '{' globals '}'  */
+#line 51 "compilador_sintatico.y"
+                                        {}
+#line 1461 "compilador_sintatico.tab.c"
     break;
 
   case 11: /* cmprt: '(' cmprt TOK_E cmprt ')'  */
-#line 44 "compilador_sintatico.y"
+#line 53 "compilador_sintatico.y"
                                   {}
-#line 1453 "compilador_sintatico.tab.c"
+#line 1467 "compilador_sintatico.tab.c"
     break;
 
   case 12: /* cmprt: '(' cmprt TOK_OU cmprt ')'  */
-#line 45 "compilador_sintatico.y"
+#line 54 "compilador_sintatico.y"
                                      {}
-#line 1459 "compilador_sintatico.tab.c"
+#line 1473 "compilador_sintatico.tab.c"
     break;
 
   case 13: /* cmprt: '(' cmprt '<' cmprt ')'  */
-#line 46 "compilador_sintatico.y"
+#line 55 "compilador_sintatico.y"
                                  {}
-#line 1465 "compilador_sintatico.tab.c"
+#line 1479 "compilador_sintatico.tab.c"
     break;
 
   case 14: /* cmprt: '(' cmprt TOK_DIFERENTE cmprt ')'  */
-#line 47 "compilador_sintatico.y"
+#line 56 "compilador_sintatico.y"
                                            {}
-#line 1471 "compilador_sintatico.tab.c"
+#line 1485 "compilador_sintatico.tab.c"
     break;
 
   case 15: /* cmprt: '(' cmprt '>' cmprt ')'  */
-#line 48 "compilador_sintatico.y"
+#line 57 "compilador_sintatico.y"
                                 {}
-#line 1477 "compilador_sintatico.tab.c"
+#line 1491 "compilador_sintatico.tab.c"
     break;
 
   case 16: /* cmprt: '(' cmprt TOK_IGUAL cmprt ')'  */
-#line 49 "compilador_sintatico.y"
+#line 58 "compilador_sintatico.y"
                                        {}
-#line 1483 "compilador_sintatico.tab.c"
+#line 1497 "compilador_sintatico.tab.c"
     break;
 
   case 17: /* cmprt: factor  */
-#line 50 "compilador_sintatico.y"
+#line 59 "compilador_sintatico.y"
                 {}
-#line 1489 "compilador_sintatico.tab.c"
+#line 1503 "compilador_sintatico.tab.c"
     break;
 
   case 18: /* expr: expr '+' term  */
-#line 52 "compilador_sintatico.y"
+#line 61 "compilador_sintatico.y"
                         {}
-#line 1495 "compilador_sintatico.tab.c"
+#line 1509 "compilador_sintatico.tab.c"
     break;
 
   case 19: /* expr: expr '-' term  */
-#line 53 "compilador_sintatico.y"
+#line 62 "compilador_sintatico.y"
                         {}
-#line 1501 "compilador_sintatico.tab.c"
+#line 1515 "compilador_sintatico.tab.c"
     break;
 
   case 20: /* expr: term  */
-#line 54 "compilador_sintatico.y"
+#line 63 "compilador_sintatico.y"
                 {}
-#line 1507 "compilador_sintatico.tab.c"
+#line 1521 "compilador_sintatico.tab.c"
     break;
 
   case 21: /* term: term '*' factor  */
-#line 56 "compilador_sintatico.y"
+#line 65 "compilador_sintatico.y"
                        {}
-#line 1513 "compilador_sintatico.tab.c"
+#line 1527 "compilador_sintatico.tab.c"
     break;
 
   case 22: /* term: term '/' factor  */
-#line 57 "compilador_sintatico.y"
+#line 66 "compilador_sintatico.y"
                         {}
-#line 1519 "compilador_sintatico.tab.c"
+#line 1533 "compilador_sintatico.tab.c"
     break;
 
   case 23: /* term: factor  */
-#line 58 "compilador_sintatico.y"
+#line 67 "compilador_sintatico.y"
                {}
-#line 1525 "compilador_sintatico.tab.c"
+#line 1539 "compilador_sintatico.tab.c"
     break;
 
   case 24: /* factor: '(' expr ')'  */
-#line 60 "compilador_sintatico.y"
+#line 69 "compilador_sintatico.y"
                         {}
-#line 1531 "compilador_sintatico.tab.c"
+#line 1545 "compilador_sintatico.tab.c"
     break;
 
   case 25: /* factor: TOK_PALAVRA  */
-#line 61 "compilador_sintatico.y"
+#line 70 "compilador_sintatico.y"
                         {}
-#line 1537 "compilador_sintatico.tab.c"
+#line 1551 "compilador_sintatico.tab.c"
     break;
 
   case 26: /* factor: TOK_INTEIRO  */
-#line 62 "compilador_sintatico.y"
+#line 71 "compilador_sintatico.y"
                         {}
-#line 1543 "compilador_sintatico.tab.c"
+#line 1557 "compilador_sintatico.tab.c"
     break;
 
   case 27: /* factor: TOK_BOLEANO  */
-#line 63 "compilador_sintatico.y"
+#line 72 "compilador_sintatico.y"
                         {}
-#line 1549 "compilador_sintatico.tab.c"
+#line 1563 "compilador_sintatico.tab.c"
     break;
 
   case 28: /* factor: TOK_ID  */
-#line 64 "compilador_sintatico.y"
+#line 73 "compilador_sintatico.y"
                 {}
-#line 1555 "compilador_sintatico.tab.c"
+#line 1569 "compilador_sintatico.tab.c"
     break;
 
   case 29: /* factor: TOK_PF  */
-#line 65 "compilador_sintatico.y"
+#line 74 "compilador_sintatico.y"
                 {}
-#line 1561 "compilador_sintatico.tab.c"
+#line 1575 "compilador_sintatico.tab.c"
     break;
 
   case 30: /* factor: unary  */
-#line 66 "compilador_sintatico.y"
+#line 75 "compilador_sintatico.y"
                  {}
-#line 1567 "compilador_sintatico.tab.c"
+#line 1581 "compilador_sintatico.tab.c"
     break;
 
   case 31: /* unary: '-' factor  */
-#line 68 "compilador_sintatico.y"
+#line 77 "compilador_sintatico.y"
                         {}
-#line 1573 "compilador_sintatico.tab.c"
+#line 1587 "compilador_sintatico.tab.c"
     break;
 
   case 32: /* unary: '+' factor  */
-#line 69 "compilador_sintatico.y"
+#line 78 "compilador_sintatico.y"
                         {}
-#line 1579 "compilador_sintatico.tab.c"
+#line 1593 "compilador_sintatico.tab.c"
     break;
 
 
-#line 1583 "compilador_sintatico.tab.c"
+#line 1597 "compilador_sintatico.tab.c"
 
       default: break;
     }
@@ -1803,5 +1817,5 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 71 "compilador_sintatico.y"
+#line 80 "compilador_sintatico.y"
 

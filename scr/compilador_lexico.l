@@ -1,7 +1,9 @@
 %{
 #include <stdio.h>
-#include "compilador_sintatico.tab.h"
+#include <stdlib.h>
 
+class Node;
+#include "compilador_sintatico.tab.h"
 int yyerror(const char *s);
 %}
 

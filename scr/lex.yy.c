@@ -494,11 +494,13 @@ char *yytext;
 #line 1 "compilador_lexico.l"
 #line 2 "compilador_lexico.l"
 #include <stdio.h>
-#include "compilador_sintatico.tab.h"
+#include <stdlib.h>
 
+class Node;
+#include "compilador_sintatico.tab.h"
 int yyerror(const char *s);
-#line 501 "lex.yy.c"
-#line 502 "lex.yy.c"
+#line 503 "lex.yy.c"
+#line 504 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -715,9 +717,9 @@ YY_DECL
 		}
 
 	{
-#line 8 "compilador_lexico.l"
+#line 10 "compilador_lexico.l"
 
-#line 721 "lex.yy.c"
+#line 723 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -777,162 +779,162 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 9 "compilador_lexico.l"
+#line 11 "compilador_lexico.l"
 {   /*ignora*/  }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 10 "compilador_lexico.l"
+#line 12 "compilador_lexico.l"
 { /*Comentário*/ }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 12 "compilador_lexico.l"
+#line 14 "compilador_lexico.l"
 { return TOK_MOSTRA ; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 14 "compilador_lexico.l"
+#line 16 "compilador_lexico.l"
 {return TOK_ENQUANTO ; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 15 "compilador_lexico.l"
+#line 17 "compilador_lexico.l"
 {return TOK_LOOP;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 16 "compilador_lexico.l"
+#line 18 "compilador_lexico.l"
 {return TOK_SE ;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 17 "compilador_lexico.l"
+#line 19 "compilador_lexico.l"
 {return TOK_SENAO;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 18 "compilador_lexico.l"
+#line 20 "compilador_lexico.l"
 {return TOK_NAO ;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 19 "compilador_lexico.l"
+#line 21 "compilador_lexico.l"
 {return TOK_E ;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 20 "compilador_lexico.l"
+#line 22 "compilador_lexico.l"
 {return TOK_OU ;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 21 "compilador_lexico.l"
+#line 23 "compilador_lexico.l"
 {return TOK_IGUAL ;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 22 "compilador_lexico.l"
+#line 24 "compilador_lexico.l"
 {return TOK_DIFERENTE ;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 23 "compilador_lexico.l"
+#line 25 "compilador_lexico.l"
 {return '+' ; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 24 "compilador_lexico.l"
+#line 26 "compilador_lexico.l"
 {return '-' ; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 25 "compilador_lexico.l"
+#line 27 "compilador_lexico.l"
 {return '*' ; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 26 "compilador_lexico.l"
+#line 28 "compilador_lexico.l"
 {return '/' ; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 27 "compilador_lexico.l"
+#line 29 "compilador_lexico.l"
 {return '(' ; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 28 "compilador_lexico.l"
+#line 30 "compilador_lexico.l"
 {return ')' ; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 29 "compilador_lexico.l"
+#line 31 "compilador_lexico.l"
 {return ';' ; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 30 "compilador_lexico.l"
+#line 32 "compilador_lexico.l"
 {return '=' ; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 31 "compilador_lexico.l"
+#line 33 "compilador_lexico.l"
 {return '<' ; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 32 "compilador_lexico.l"
+#line 34 "compilador_lexico.l"
 {return '>' ; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 33 "compilador_lexico.l"
+#line 35 "compilador_lexico.l"
 {return '{' ; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 34 "compilador_lexico.l"
+#line 36 "compilador_lexico.l"
 {return '}' ; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 37 "compilador_lexico.l"
+#line 39 "compilador_lexico.l"
 {return TOK_BOLEANO;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 39 "compilador_lexico.l"
+#line 41 "compilador_lexico.l"
 {return TOK_ID ; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 41 "compilador_lexico.l"
+#line 43 "compilador_lexico.l"
 {return TOK_PF ; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 43 "compilador_lexico.l"
+#line 45 "compilador_lexico.l"
 {return TOK_INTEIRO ; }
 	YY_BREAK
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 45 "compilador_lexico.l"
+#line 47 "compilador_lexico.l"
 {return TOK_PALAVRA ; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 47 "compilador_lexico.l"
+#line 49 "compilador_lexico.l"
 {printf("Simbolo não reconhecido! %c\n",yytext[0]);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 49 "compilador_lexico.l"
+#line 51 "compilador_lexico.l"
 ECHO;
 	YY_BREAK
-#line 936 "lex.yy.c"
+#line 938 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1937,7 +1939,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 49 "compilador_lexico.l"
+#line 51 "compilador_lexico.l"
 
 int yywrap(){
     return 1;
