@@ -14,7 +14,7 @@ int yylex(void);
     Node *node;
 }
 
-%token TOK_ID TOK_PF TOK_INTEIRO TOK_PALAVRA TOK_BOLEANO
+%token TOK_ID TOK_PF TOK_INTEIRO TOK_PALAVRA TOK_VERDADEIRO TOK_FALSO
 
 %token TOK_MOSTRA
 %token TOK_ENQUANTO
@@ -32,49 +32,59 @@ int yylex(void);
 %type<str> TOK_ID
 %type<itg> TOK_INTEIRO
 %type<flt> TOK_PF
+%type<str> TOK_PALAVRA
+
 %type<node> globals global cmprt expr term factor unary
 
-%start program
+%start program 
 
 %%
 
-program : globals       {};
+program : globals       {Node *program = new Program();
+                        program->append($globals);
+                        printf_tree(program);
+                        }
 
-globals: global globals{}
-        |global {}
+globals: globals[gg] global {$gg->append($global);
+                        $$ = $gg;}
+        |global { Node *n = new Node();
+                n->append($global);
+                $$ = n; }
 
-global: TOK_ID '=' expr ';' {}
-        |TOK_MOSTRA factor ';' {}
-        |TOK_SE  cmprt  '{' globals '}' {}
-        |TOK_SE  cmprt  '{' globals '}' TOK_SENAO '{' globals '}'  {}
-        |TOK_ENQUANTO  cmprt '{' globals '}' {}
-        |TOK_LOOP '{' globals'}'        {}
+global: TOK_ID '=' expr ';'     { $$ = new Variavel($TOK_ID,$expr);     }
+        |TOK_MOSTRA factor ';' { $$ = new Mostra($factor);      }
+        |TOK_SE  cmprt  '{' globals '}' { $$ = new Se($cmprt,$globals); }
+        |TOK_SE  cmprt  '{' globals[g1] '}' TOK_SENAO '{' globals[g2] '}'       { $$ = new SeSenao($cmprt,$g1,$g2);     }
+        |TOK_ENQUANTO  cmprt '{' globals '}'    { $$ = new Enquanto($cmprt,$globals);   }
+        |TOK_LOOP '{' globals'}'        { $$ = new Loop($globals);      }
 
-cmprt:  '(' cmprt TOK_E cmprt ')' {}
-        |'(' cmprt TOK_OU  cmprt ')' {}
-        |'(' cmprt '<' cmprt ')' {}
-        |'(' cmprt TOK_DIFERENTE cmprt ')' {}
-        |'(' cmprt '>' cmprt ')'{}
-        |'(' cmprt TOK_IGUAL cmprt ')' {}
-        |factor {}
 
-expr:   expr '+' term   {}
-        |expr '-' term  {}
-        |term   {}
+cmprt:  '(' cmprt[c1] TOK_E cmprt[c2] ')'       { $$ = new OpBinaria($c1,'&',$c2);      }
+        |'(' cmprt[c1] TOK_OU  cmprt[c2] ')'    { $$ = new OpBinaria($c1,'|',$c2);      }
+        |'(' cmprt[c1] '<' cmprt[c2] ')'        { $$ = new OpBinaria($c1,'<',$c2);      }
+        |'(' cmprt[c1] TOK_DIFERENTE cmprt[c2] ')'      { $$ = new OpBinaria($c1,'!',$c2);      }
+        |'(' cmprt[c1] '>' cmprt[c2] ')'        { $$ = new OpBinaria($c1,'>',$c2);      }
+        |'(' cmprt[c1] TOK_IGUAL cmprt[c2] ')'  { $$ = new OpBinaria($c1,'=',$c2);      }
+        |factor { $$ = $factor; }
 
-term:   term '*' factor{}
-        |term '/' factor{}
-        |factor{}
+expr:   expr[e] '+' term   {$$ = new OpBinaria($e,'+',$term);   }
+        |expr[e] '-' term  {$$ = new OpBinaria($e,'-',$term);   }
+        |term   { $$ = $term;   }
 
-factor: '(' expr ')'    {}
-        |TOK_PALAVRA    {}
-        |TOK_INTEIRO    {}
-        |TOK_BOLEANO    {}
-        |TOK_ID {}
-        |TOK_PF {}
-        |unary   {}
+term:   term[t] '*' factor {  $$ = new OpBinaria($t,'*',$factor);}
+        |term[t] '/' factor        { $$ = new OpBinaria($t,'/',$factor);        }
+        |factor { $$ = $factor; }
 
-unary:  '-' factor      {}
-        |'+' factor     {}
+factor: '(' expr ')'    { $$ = $expr;   }
+        |TOK_PALAVRA    { $$ = new Palavra($TOK_PALAVRA);       }
+        |TOK_INTEIRO    { $$ = new Inteiro($TOK_INTEIRO);       }
+        |TOK_ID { $$ = new Id($TOK_ID);    }
+        |TOK_PF { $$ = new Pf($TOK_PF); }
+        |unary  { $$ = $unary; }
+        |TOK_FALSO      { $$ = new Boleano(true);       }
+        |TOK_VERDADEIRO { $$= new Boleano(false);        }
+
+unary:  '-' factor      { $$ = new Unario('-',$factor);   }
+        |'+' factor     { $$ = new Unario('+',$factor);   }
 
 %%

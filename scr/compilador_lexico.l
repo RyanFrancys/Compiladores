@@ -36,15 +36,21 @@ int yyerror(const char *s);
 "}" {return '}' ; }
 
 
-([V][E][R][D][A][D][E]|[F][A][L][S][O]) {return TOK_BOLEANO;}
+"verdadeiro" {return TOK_VERDADEIRO;}
+"falso" {return TOK_FALSO;}
 
-[a-zA-Z_][a-zA-Z0-9_]* {return TOK_ID ; }
+[a-zA-Z_][a-zA-Z0-9_]* {yylval.str = strndup(yytext, yyleng);
+                        return TOK_ID ; }
 
-[0-9]+\.[0-9]* {return TOK_PF ; }
+[0-9]+\.[0-9]* {yylval.flt = atof(yytext);
+                return TOK_PF ; }
 
-[0-9]+  {return TOK_INTEIRO ; }
+[0-9]+  {
+            yylval.itg = atoi(yytext);
+            return TOK_INTEIRO ; }
 
-\"([^\\\"]|\\.)*\"  {return TOK_PALAVRA ; }
+\"([^\\\"]|\\.)*\"  {yylval.str = strndup(yytext, yyleng);
+                    return TOK_PALAVRA ; }
 
 .   {printf("Simbolo não reconhecido! %c\n",yytext[0]);}
 

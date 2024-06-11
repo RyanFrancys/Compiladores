@@ -54,6 +54,100 @@ public:
     }
 };
 
+class Boleano : public Node {
+protected:
+    bool value;
+public: 
+    Boleano(const bool v) {
+        value = v;
+    }
+
+    virtual string toStr() override {
+        return to_string(value);
+    }
+};
+
+class Palavra : public Node {
+protected:
+    string frase;
+public: 
+    Palavra(const string v) {
+        frase = v;
+    }
+
+    virtual string toStr() override {
+        return frase;
+    }
+};
+
+
+class Loop : public Node {
+protected:
+     Node *value;
+public: 
+    Loop(Node *v) {
+        value = v;
+        children.push_back(v);
+    }
+
+    virtual string toStr() override {
+        return "Loop";
+    }
+};
+
+class Enquanto : public Node {
+protected:
+     Node *condition;
+     Node *content;
+public: 
+    Enquanto(Node *c,Node *n) {
+        content = n;
+        condition = c;
+        children.push_back(c);
+        children.push_back(n);
+    }
+
+    virtual string toStr() override {
+        return "Enquanto";
+    }
+};
+
+class Se : public Node {
+protected:
+     Node *condition;
+     Node *content;
+public: 
+    Se(Node *c,Node *n) {
+        condition = c;
+        content = n;
+        children.push_back(c);
+        children.push_back(n);
+    }
+
+    virtual string toStr() override {
+        return "Se";
+    }
+};
+
+class SeSenao : public Node {
+protected:
+    Node *contentSe;
+    Node *contentSenao;
+    Node *condition;
+public: 
+    SeSenao(Node *c,Node *s,Node *sn) {
+        condition = c;
+        contentSe = s;
+        contentSenao= sn;
+        children.push_back(c);
+        children.push_back(s);
+        children.push_back(sn);
+    }
+
+    virtual string toStr() override {
+        return "Se Senão";
+    }
+};
 
 class Id : public Node {
 protected:

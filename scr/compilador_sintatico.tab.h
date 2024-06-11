@@ -58,18 +58,19 @@ extern int yydebug;
     TOK_PF = 259,                  /* TOK_PF  */
     TOK_INTEIRO = 260,             /* TOK_INTEIRO  */
     TOK_PALAVRA = 261,             /* TOK_PALAVRA  */
-    TOK_BOLEANO = 262,             /* TOK_BOLEANO  */
-    TOK_MOSTRA = 263,              /* TOK_MOSTRA  */
-    TOK_ENQUANTO = 264,            /* TOK_ENQUANTO  */
-    TOK_SE = 265,                  /* TOK_SE  */
-    TOK_SENAO = 266,               /* TOK_SENAO  */
-    TOK_CASO = 267,                /* TOK_CASO  */
-    TOK_LOOP = 268,                /* TOK_LOOP  */
-    TOK_E = 269,                   /* TOK_E  */
-    TOK_OU = 270,                  /* TOK_OU  */
-    TOK_NAO = 271,                 /* TOK_NAO  */
-    TOK_IGUAL = 272,               /* TOK_IGUAL  */
-    TOK_DIFERENTE = 273            /* TOK_DIFERENTE  */
+    TOK_VERDADEIRO = 262,          /* TOK_VERDADEIRO  */
+    TOK_FALSO = 263,               /* TOK_FALSO  */
+    TOK_MOSTRA = 264,              /* TOK_MOSTRA  */
+    TOK_ENQUANTO = 265,            /* TOK_ENQUANTO  */
+    TOK_SE = 266,                  /* TOK_SE  */
+    TOK_SENAO = 267,               /* TOK_SENAO  */
+    TOK_CASO = 268,                /* TOK_CASO  */
+    TOK_LOOP = 269,                /* TOK_LOOP  */
+    TOK_E = 270,                   /* TOK_E  */
+    TOK_OU = 271,                  /* TOK_OU  */
+    TOK_NAO = 272,                 /* TOK_NAO  */
+    TOK_IGUAL = 273,               /* TOK_IGUAL  */
+    TOK_DIFERENTE = 274            /* TOK_DIFERENTE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -85,7 +86,7 @@ union YYSTYPE
     double flt;
     Node *node;
 
-#line 89 "compilador_sintatico.tab.h"
+#line 90 "compilador_sintatico.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
