@@ -1,6 +1,7 @@
 %{
 #include "nodes.h"
 
+extern bool force_print_tree;
 int yyerror(const char *s);
 int yylex(void);
 %}
@@ -42,7 +43,23 @@ int yylex(void);
 
 program : globals       {Node *program = new Program();
                         program->append($globals);
-                        printf_tree(program);
+                        
+                        //Analise semantica
+
+
+
+
+                        
+                        if(error_count>0){
+                                cout    << "\nForam encontrados "
+                                        << error_count
+                                        << " erros no  No código\n"
+                                        << endl;  
+                        }
+                        if(force_print_tree||error_count==0){
+                                printf_tree(program);
+                        }
+
                         }
 
 globals: globals[gg] global {$gg->append($global);
@@ -57,6 +74,8 @@ global: TOK_ID '=' expr ';'     { $$ = new Variavel($TOK_ID,$expr);     }
         |TOK_SE  cmprt  '{' globals[g1] '}' TOK_SENAO '{' globals[g2] '}'       { $$ = new SeSenao($cmprt,$g1,$g2);     }
         |TOK_ENQUANTO  cmprt '{' globals '}'    { $$ = new Enquanto($cmprt,$globals);   }
         |TOK_LOOP '{' globals'}'        { $$ = new Loop($globals);      }
+        |error ';'      { $$ = new Node();      }
+        |error  { $$ = new Node();      }
 
 
 cmprt:  '(' cmprt[c1] TOK_E cmprt[c2] ')'       { $$ = new OpBinaria($c1,'&',$c2);      }

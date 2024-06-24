@@ -79,7 +79,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 10 "compilador_sintatico.y"
+#line 11 "compilador_sintatico.y"
  
     char *str;
     int itg;

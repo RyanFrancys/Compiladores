@@ -498,11 +498,13 @@ char *yytext;
 #include <stdio.h>
 #include <stdlib.h>
 
+bool force_print_tree = false;
+char * build_file_name;
 class Node;
 #include "compilador_sintatico.tab.h"
 int yyerror(const char *s);
-#line 505 "lex.yy.c"
-#line 506 "lex.yy.c"
+#line 507 "lex.yy.c"
+#line 508 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -719,9 +721,9 @@ YY_DECL
 		}
 
 	{
-#line 10 "compilador_lexico.l"
+#line 12 "compilador_lexico.l"
 
-#line 725 "lex.yy.c"
+#line 727 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -781,150 +783,150 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 11 "compilador_lexico.l"
+#line 13 "compilador_lexico.l"
 {   /*ignora*/  }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 12 "compilador_lexico.l"
+#line 14 "compilador_lexico.l"
 { /*Comentário*/ }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 14 "compilador_lexico.l"
+#line 16 "compilador_lexico.l"
 { return TOK_MOSTRA ; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 16 "compilador_lexico.l"
+#line 18 "compilador_lexico.l"
 {return TOK_ENQUANTO ; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 17 "compilador_lexico.l"
+#line 19 "compilador_lexico.l"
 {return TOK_LOOP;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 18 "compilador_lexico.l"
+#line 20 "compilador_lexico.l"
 {return TOK_SE ;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 19 "compilador_lexico.l"
+#line 21 "compilador_lexico.l"
 {return TOK_SENAO;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 20 "compilador_lexico.l"
+#line 22 "compilador_lexico.l"
 {return TOK_NAO ;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 21 "compilador_lexico.l"
+#line 23 "compilador_lexico.l"
 {return TOK_E ;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 22 "compilador_lexico.l"
+#line 24 "compilador_lexico.l"
 {return TOK_OU ;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 23 "compilador_lexico.l"
+#line 25 "compilador_lexico.l"
 {return TOK_IGUAL ;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 24 "compilador_lexico.l"
+#line 26 "compilador_lexico.l"
 {return TOK_DIFERENTE ;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 25 "compilador_lexico.l"
+#line 27 "compilador_lexico.l"
 {return '+' ; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 26 "compilador_lexico.l"
+#line 28 "compilador_lexico.l"
 {return '-' ; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 27 "compilador_lexico.l"
+#line 29 "compilador_lexico.l"
 {return '*' ; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 28 "compilador_lexico.l"
+#line 30 "compilador_lexico.l"
 {return '/' ; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 29 "compilador_lexico.l"
+#line 31 "compilador_lexico.l"
 {return '(' ; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 30 "compilador_lexico.l"
+#line 32 "compilador_lexico.l"
 {return ')' ; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 31 "compilador_lexico.l"
+#line 33 "compilador_lexico.l"
 {return ';' ; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 32 "compilador_lexico.l"
+#line 34 "compilador_lexico.l"
 {return '=' ; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 33 "compilador_lexico.l"
+#line 35 "compilador_lexico.l"
 {return '<' ; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 34 "compilador_lexico.l"
+#line 36 "compilador_lexico.l"
 {return '>' ; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 35 "compilador_lexico.l"
+#line 37 "compilador_lexico.l"
 {return '{' ; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 36 "compilador_lexico.l"
+#line 38 "compilador_lexico.l"
 {return '}' ; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 39 "compilador_lexico.l"
+#line 41 "compilador_lexico.l"
 {return TOK_VERDADEIRO;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 40 "compilador_lexico.l"
+#line 42 "compilador_lexico.l"
 {return TOK_FALSO;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 42 "compilador_lexico.l"
+#line 44 "compilador_lexico.l"
 {yylval.str = strndup(yytext, yyleng);
                         return TOK_ID ; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 45 "compilador_lexico.l"
+#line 47 "compilador_lexico.l"
 {yylval.flt = atof(yytext);
                 return TOK_PF ; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 48 "compilador_lexico.l"
+#line 50 "compilador_lexico.l"
 {
             yylval.itg = atoi(yytext);
             return TOK_INTEIRO ; }
@@ -932,21 +934,21 @@ YY_RULE_SETUP
 case 30:
 /* rule 30 can match eol */
 YY_RULE_SETUP
-#line 52 "compilador_lexico.l"
+#line 54 "compilador_lexico.l"
 {yylval.str = strndup(yytext, yyleng);
                     return TOK_PALAVRA ; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 55 "compilador_lexico.l"
+#line 57 "compilador_lexico.l"
 {printf("Simbolo não reconhecido! %c\n",yytext[0]);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 57 "compilador_lexico.l"
+#line 59 "compilador_lexico.l"
 ECHO;
 	YY_BREAK
-#line 950 "lex.yy.c"
+#line 952 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1951,26 +1953,35 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 57 "compilador_lexico.l"
+#line 59 "compilador_lexico.l"
 
 int yywrap(){
     return 1;
 }
 
+extern int error_count;
 int yyerror(const char *s){
-    printf("Error de Sintaxe %d: %s.\n", yylineno,s);
+    printf("%s:%d:0: %s\n",build_file_name, yylineno, s);
+    error_count++;
     return 1;
 }
 
 int main(int argc, char *argv[]){
-if(argc <= 1){
+    if(argc <= 1){
         printf("Sintaxe: %s nome_do_programa\n",argv[0]);
         return 1;
     }
-
-    yyin = fopen(argv[1],"r");
+    
+    int build_file_id =1;
+    
+    if (strcmp(argv[1],"-f")==0){
+        force_print_tree = true;
+        build_file_id++;
+    }
+    build_file_name = argv[build_file_id];
+    yyin = fopen(argv[build_file_id],"r");
     if(yyin == NULL){
-        printf("Não foi possivel abrir o arquivo %s.\n",argv[1]);
+        printf("Não foi possivel abrir o arquivo %s.\n",build_file_name);
         return 1;
     }
     

@@ -5,11 +5,21 @@
 
 using namespace std;
 
+extern char *build_file_name;
+extern int yylineno;
+int error_count = 0;
+
 class Node {
 protected: 
     vector<Node*> children;
-
+    int lineno;
 public:
+    Node(){
+        lineno=yylineno;
+    }
+    int getLineNo(){
+        return lineno;
+    }
     virtual string toStr(){
         return "stmts";
     }
@@ -253,3 +263,4 @@ void printf_tree(Node *root) {
     printf_tree_recursive(root);
     cout << "}" << endl;
 }
+
