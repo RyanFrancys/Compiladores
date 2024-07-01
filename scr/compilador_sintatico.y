@@ -7,6 +7,7 @@ int yylex(void);
 %}
 
 %define parse.error verbose
+%define parse.trace
 
 %union { 
     char *str;

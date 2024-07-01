@@ -39,7 +39,7 @@
 # define YY_YY_COMPILADOR_SINTATICO_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -79,7 +79,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "compilador_sintatico.y"
+#line 12 "compilador_sintatico.y"
  
     char *str;
     int itg;

@@ -1971,15 +1971,20 @@ int main(int argc, char *argv[]){
         printf("Sintaxe: %s nome_do_programa\n",argv[0]);
         return 1;
     }
-    
-    int build_file_id =1;
-    
-    if (strcmp(argv[1],"-f")==0){
-        force_print_tree = true;
-        build_file_id++;
+        
+    //Parametros adicionais
+    for(int i=1;i<argc;i++){
+        if(strcmp(argv[i],"-d")==0){
+            yydebug=1;
+        }
+        
+        if (strcmp(argv[i],"-f")==0){
+            force_print_tree = true;
+        }
     }
-    build_file_name = argv[build_file_id];
-    yyin = fopen(argv[build_file_id],"r");
+
+    build_file_name = argv[1];
+    yyin = fopen(argv[1],"r");
     if(yyin == NULL){
         printf("Não foi possivel abrir o arquivo %s.\n",build_file_name);
         return 1;

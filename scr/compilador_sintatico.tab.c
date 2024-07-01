@@ -531,10 +531,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    44,    44,    65,    67,    71,    72,    73,    74,    75,
-      76,    77,    78,    81,    82,    83,    84,    85,    86,    87,
-      89,    90,    91,    93,    94,    95,    97,    98,    99,   100,
-     101,   102,   103,   104,   106,   107
+       0,    45,    45,    66,    68,    72,    73,    74,    75,    76,
+      77,    78,    79,    82,    83,    84,    85,    86,    87,    88,
+      90,    91,    92,    94,    95,    96,    98,    99,   100,   101,
+     102,   103,   104,   105,   107,   108
 };
 #endif
 
@@ -1423,7 +1423,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: globals  */
-#line 44 "compilador_sintatico.y"
+#line 45 "compilador_sintatico.y"
                         {Node *program = new Program();
                         program->append((yyvsp[0].node));
                         
@@ -1448,14 +1448,14 @@ yyreduce:
     break;
 
   case 3: /* globals: globals global  */
-#line 65 "compilador_sintatico.y"
+#line 66 "compilador_sintatico.y"
                             {(yyvsp[-1].node)->append((yyvsp[0].node));
                         (yyval.node) = (yyvsp[-1].node);}
 #line 1455 "compilador_sintatico.tab.c"
     break;
 
   case 4: /* globals: global  */
-#line 67 "compilador_sintatico.y"
+#line 68 "compilador_sintatico.y"
                 { Node *n = new Node();
                 n->append((yyvsp[0].node));
                 (yyval.node) = n; }
@@ -1463,187 +1463,187 @@ yyreduce:
     break;
 
   case 5: /* global: TOK_ID '=' expr ';'  */
-#line 71 "compilador_sintatico.y"
+#line 72 "compilador_sintatico.y"
                                 { (yyval.node) = new Variavel((yyvsp[-3].str),(yyvsp[-1].node));     }
 #line 1469 "compilador_sintatico.tab.c"
     break;
 
   case 6: /* global: TOK_MOSTRA factor ';'  */
-#line 72 "compilador_sintatico.y"
+#line 73 "compilador_sintatico.y"
                                { (yyval.node) = new Mostra((yyvsp[-1].node));      }
 #line 1475 "compilador_sintatico.tab.c"
     break;
 
   case 7: /* global: TOK_SE cmprt '{' globals '}'  */
-#line 73 "compilador_sintatico.y"
+#line 74 "compilador_sintatico.y"
                                         { (yyval.node) = new Se((yyvsp[-3].node),(yyvsp[-1].node)); }
 #line 1481 "compilador_sintatico.tab.c"
     break;
 
   case 8: /* global: TOK_SE cmprt '{' globals '}' TOK_SENAO '{' globals '}'  */
-#line 74 "compilador_sintatico.y"
+#line 75 "compilador_sintatico.y"
                                                                                 { (yyval.node) = new SeSenao((yyvsp[-7].node),(yyvsp[-5].node),(yyvsp[-1].node));     }
 #line 1487 "compilador_sintatico.tab.c"
     break;
 
   case 9: /* global: TOK_ENQUANTO cmprt '{' globals '}'  */
-#line 75 "compilador_sintatico.y"
+#line 76 "compilador_sintatico.y"
                                                 { (yyval.node) = new Enquanto((yyvsp[-3].node),(yyvsp[-1].node));   }
 #line 1493 "compilador_sintatico.tab.c"
     break;
 
   case 10: /* global: TOK_LOOP '{' globals '}'  */
-#line 76 "compilador_sintatico.y"
+#line 77 "compilador_sintatico.y"
                                         { (yyval.node) = new Loop((yyvsp[-1].node));      }
 #line 1499 "compilador_sintatico.tab.c"
     break;
 
   case 11: /* global: error ';'  */
-#line 77 "compilador_sintatico.y"
+#line 78 "compilador_sintatico.y"
                         { (yyval.node) = new Node();      }
 #line 1505 "compilador_sintatico.tab.c"
     break;
 
   case 12: /* global: error  */
-#line 78 "compilador_sintatico.y"
+#line 79 "compilador_sintatico.y"
                 { (yyval.node) = new Node();      }
 #line 1511 "compilador_sintatico.tab.c"
     break;
 
   case 13: /* cmprt: '(' cmprt TOK_E cmprt ')'  */
-#line 81 "compilador_sintatico.y"
+#line 82 "compilador_sintatico.y"
                                                 { (yyval.node) = new OpBinaria((yyvsp[-3].node),'&',(yyvsp[-1].node));      }
 #line 1517 "compilador_sintatico.tab.c"
     break;
 
   case 14: /* cmprt: '(' cmprt TOK_OU cmprt ')'  */
-#line 82 "compilador_sintatico.y"
+#line 83 "compilador_sintatico.y"
                                                 { (yyval.node) = new OpBinaria((yyvsp[-3].node),'|',(yyvsp[-1].node));      }
 #line 1523 "compilador_sintatico.tab.c"
     break;
 
   case 15: /* cmprt: '(' cmprt '<' cmprt ')'  */
-#line 83 "compilador_sintatico.y"
+#line 84 "compilador_sintatico.y"
                                                 { (yyval.node) = new OpBinaria((yyvsp[-3].node),'<',(yyvsp[-1].node));      }
 #line 1529 "compilador_sintatico.tab.c"
     break;
 
   case 16: /* cmprt: '(' cmprt TOK_DIFERENTE cmprt ')'  */
-#line 84 "compilador_sintatico.y"
+#line 85 "compilador_sintatico.y"
                                                         { (yyval.node) = new OpBinaria((yyvsp[-3].node),'!',(yyvsp[-1].node));      }
 #line 1535 "compilador_sintatico.tab.c"
     break;
 
   case 17: /* cmprt: '(' cmprt '>' cmprt ')'  */
-#line 85 "compilador_sintatico.y"
+#line 86 "compilador_sintatico.y"
                                                 { (yyval.node) = new OpBinaria((yyvsp[-3].node),'>',(yyvsp[-1].node));      }
 #line 1541 "compilador_sintatico.tab.c"
     break;
 
   case 18: /* cmprt: '(' cmprt TOK_IGUAL cmprt ')'  */
-#line 86 "compilador_sintatico.y"
+#line 87 "compilador_sintatico.y"
                                                 { (yyval.node) = new OpBinaria((yyvsp[-3].node),'=',(yyvsp[-1].node));      }
 #line 1547 "compilador_sintatico.tab.c"
     break;
 
   case 19: /* cmprt: factor  */
-#line 87 "compilador_sintatico.y"
+#line 88 "compilador_sintatico.y"
                 { (yyval.node) = (yyvsp[0].node); }
 #line 1553 "compilador_sintatico.tab.c"
     break;
 
   case 20: /* expr: expr '+' term  */
-#line 89 "compilador_sintatico.y"
+#line 90 "compilador_sintatico.y"
                            {(yyval.node) = new OpBinaria((yyvsp[-2].node),'+',(yyvsp[0].node));   }
 #line 1559 "compilador_sintatico.tab.c"
     break;
 
   case 21: /* expr: expr '-' term  */
-#line 90 "compilador_sintatico.y"
+#line 91 "compilador_sintatico.y"
                            {(yyval.node) = new OpBinaria((yyvsp[-2].node),'-',(yyvsp[0].node));   }
 #line 1565 "compilador_sintatico.tab.c"
     break;
 
   case 22: /* expr: term  */
-#line 91 "compilador_sintatico.y"
+#line 92 "compilador_sintatico.y"
                 { (yyval.node) = (yyvsp[0].node);   }
 #line 1571 "compilador_sintatico.tab.c"
     break;
 
   case 23: /* term: term '*' factor  */
-#line 93 "compilador_sintatico.y"
+#line 94 "compilador_sintatico.y"
                            {  (yyval.node) = new OpBinaria((yyvsp[-2].node),'*',(yyvsp[0].node));}
 #line 1577 "compilador_sintatico.tab.c"
     break;
 
   case 24: /* term: term '/' factor  */
-#line 94 "compilador_sintatico.y"
+#line 95 "compilador_sintatico.y"
                                    { (yyval.node) = new OpBinaria((yyvsp[-2].node),'/',(yyvsp[0].node));        }
 #line 1583 "compilador_sintatico.tab.c"
     break;
 
   case 25: /* term: factor  */
-#line 95 "compilador_sintatico.y"
+#line 96 "compilador_sintatico.y"
                 { (yyval.node) = (yyvsp[0].node); }
 #line 1589 "compilador_sintatico.tab.c"
     break;
 
   case 26: /* factor: '(' expr ')'  */
-#line 97 "compilador_sintatico.y"
+#line 98 "compilador_sintatico.y"
                         { (yyval.node) = (yyvsp[-1].node);   }
 #line 1595 "compilador_sintatico.tab.c"
     break;
 
   case 27: /* factor: TOK_PALAVRA  */
-#line 98 "compilador_sintatico.y"
+#line 99 "compilador_sintatico.y"
                         { (yyval.node) = new Palavra((yyvsp[0].str));       }
 #line 1601 "compilador_sintatico.tab.c"
     break;
 
   case 28: /* factor: TOK_INTEIRO  */
-#line 99 "compilador_sintatico.y"
+#line 100 "compilador_sintatico.y"
                         { (yyval.node) = new Inteiro((yyvsp[0].itg));       }
 #line 1607 "compilador_sintatico.tab.c"
     break;
 
   case 29: /* factor: TOK_ID  */
-#line 100 "compilador_sintatico.y"
+#line 101 "compilador_sintatico.y"
                 { (yyval.node) = new Id((yyvsp[0].str));    }
 #line 1613 "compilador_sintatico.tab.c"
     break;
 
   case 30: /* factor: TOK_PF  */
-#line 101 "compilador_sintatico.y"
+#line 102 "compilador_sintatico.y"
                 { (yyval.node) = new Pf((yyvsp[0].flt)); }
 #line 1619 "compilador_sintatico.tab.c"
     break;
 
   case 31: /* factor: unary  */
-#line 102 "compilador_sintatico.y"
+#line 103 "compilador_sintatico.y"
                 { (yyval.node) = (yyvsp[0].node); }
 #line 1625 "compilador_sintatico.tab.c"
     break;
 
   case 32: /* factor: TOK_FALSO  */
-#line 103 "compilador_sintatico.y"
+#line 104 "compilador_sintatico.y"
                         { (yyval.node) = new Boleano(true);       }
 #line 1631 "compilador_sintatico.tab.c"
     break;
 
   case 33: /* factor: TOK_VERDADEIRO  */
-#line 104 "compilador_sintatico.y"
+#line 105 "compilador_sintatico.y"
                         { (yyval.node)= new Boleano(false);        }
 #line 1637 "compilador_sintatico.tab.c"
     break;
 
   case 34: /* unary: '-' factor  */
-#line 106 "compilador_sintatico.y"
+#line 107 "compilador_sintatico.y"
                         { (yyval.node) = new Unario('-',(yyvsp[0].node));   }
 #line 1643 "compilador_sintatico.tab.c"
     break;
 
   case 35: /* unary: '+' factor  */
-#line 107 "compilador_sintatico.y"
+#line 108 "compilador_sintatico.y"
                         { (yyval.node) = new Unario('+',(yyvsp[0].node));   }
 #line 1649 "compilador_sintatico.tab.c"
     break;
@@ -1873,5 +1873,5 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 109 "compilador_sintatico.y"
+#line 110 "compilador_sintatico.y"
 
