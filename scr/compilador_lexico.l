@@ -9,6 +9,8 @@ class Node;
 int yyerror(const char *s);
 %}
 
+%option yylineno
+
 %%
 [ \t\r\n_]  {   /*ignora*/  }
 "//".*\n { /*Comentário*/ }

@@ -5,20 +5,20 @@ a=1.;
 a=2*(9*10);
 a=a+10;
 acasd=-1.;
+b = falso;
 c=a+b;
 mostra a;
 c=9;
 mostra "palavras";
 mostra (1+2+2);
 mostra (1*2/2);
-a = VERDADE;
-a = FALSO;
+a = verdadeiro;
+a = falso;
 
-b = FALSO;
 se(a<b) {
 a=10;
 a=20;
-c=true;
+c=verdadeiro;
 }
     se(c<10){
         mostra "c é menor que 10";

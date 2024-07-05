@@ -1,16 +1,16 @@
-a=-10;
+a=10;
 b=20;
 d=0;
 c=(a-b)*d;
 c=(1+2*(3/4));
-boleano=VERDADE;
+boleano=verdadeiro;
 
 se(boleano){
     mostra a;
 }
 
 
-enquanto((1<a) E (2>B)){
+enquanto((1<a) E (2>b)){
     mostra "Condição Verdadeira!";
 }
 

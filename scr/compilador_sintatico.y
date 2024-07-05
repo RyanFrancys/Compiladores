@@ -42,15 +42,15 @@ int yylex(void);
 
 %%
 
-program : globals       {Node *program = new Program();
+program : globals{      Node *program = new Program();
                         program->append($globals);
                         
                         //Analise semantica
 
-
-
-
+                        CheckVarDecl cvd;
+                        cvd.check(program);
                         
+                                                
                         if(error_count>0){
                                 cout    << "\nForam encontrados "
                                         << error_count
@@ -60,14 +60,15 @@ program : globals       {Node *program = new Program();
                         if(force_print_tree||error_count==0){
                                 printf_tree(program);
                         }
-
-                        }
+                        
+                }
 
 globals: globals[gg] global {$gg->append($global);
-                        $$ = $gg;}
-        |global { Node *n = new Node();
-                n->append($global);
-                $$ = n; }
+                        $$ = $gg;       }
+        |global {       Node *n = new Node();
+                        n->append($global);
+                        $$ = n; }
+
 
 global: TOK_ID '=' expr ';'     { $$ = new Variavel($TOK_ID,$expr);     }
         |TOK_MOSTRA factor ';' { $$ = new Mostra($factor);      }

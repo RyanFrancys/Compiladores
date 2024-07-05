@@ -7,8 +7,8 @@ ps4_preco=2765.45*taxa_de_lucro;
 ps2="Playstation 2";
 ps2_preco=265.45*taxa_de_lucro;
 
-loja_aberta=VERDADE;
-cliente_na_loja=Falso;
+loja_aberta=verdadeiro;
+cliente_na_loja=falso;
 
 loop{
     se(salario>ps4_preco){
