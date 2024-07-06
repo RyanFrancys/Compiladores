@@ -102,10 +102,10 @@ factor: '(' expr ')'    { $$ = $expr;   }
         |TOK_ID { $$ = new Id($TOK_ID);    }
         |TOK_PF { $$ = new Pf($TOK_PF); }
         |unary  { $$ = $unary; }
-        |TOK_FALSO      { $$ = new Boleano(true);       }
-        |TOK_VERDADEIRO { $$= new Boleano(false);        }
+        |TOK_FALSO      { $$ = new Boleano(false);       }
+        |TOK_VERDADEIRO { $$= new Boleano(true);        }
 
-unary:  '-' factor      { $$ = new Unario('-',$factor);   }
-        |'+' factor     { $$ = new Unario('+',$factor);   }
+unary:  '-' factor      { $$ = new Unario("-",$factor);   }
+        |'+' factor     { $$ = new Unario("+",$factor);   }
 
 %%

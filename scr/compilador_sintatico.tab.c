@@ -1626,25 +1626,25 @@ yyreduce:
 
   case 32: /* factor: TOK_FALSO  */
 #line 105 "compilador_sintatico.y"
-                        { (yyval.node) = new Boleano(true);       }
+                        { (yyval.node) = new Boleano(false);       }
 #line 1631 "compilador_sintatico.tab.c"
     break;
 
   case 33: /* factor: TOK_VERDADEIRO  */
 #line 106 "compilador_sintatico.y"
-                        { (yyval.node)= new Boleano(false);        }
+                        { (yyval.node)= new Boleano(true);        }
 #line 1637 "compilador_sintatico.tab.c"
     break;
 
   case 34: /* unary: '-' factor  */
 #line 108 "compilador_sintatico.y"
-                        { (yyval.node) = new Unario('-',(yyvsp[0].node));   }
+                        { (yyval.node) = new Unario("-",(yyvsp[0].node));   }
 #line 1643 "compilador_sintatico.tab.c"
     break;
 
   case 35: /* unary: '+' factor  */
 #line 109 "compilador_sintatico.y"
-                        { (yyval.node) = new Unario('+',(yyvsp[0].node));   }
+                        { (yyval.node) = new Unario("+",(yyvsp[0].node));   }
 #line 1649 "compilador_sintatico.tab.c"
     break;
 

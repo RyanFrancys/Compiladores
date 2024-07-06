@@ -12,10 +12,10 @@ int error_count = 0;
 class Node
 {
 protected:
-    vector<Node *> children;
     int lineno;
 
 public:
+    vector<Node *> children;
     Node()
     {
         lineno = yylineno;
@@ -125,7 +125,7 @@ protected:
     string frase;
 
 public:
-    Palavra(const string v)
+    Palavra(string v)
     {
         frase = v;
     }
@@ -133,9 +133,16 @@ public:
     {
         return "Palavra";
     }
-    virtual string toStr() override
+    virtual string getFrase()
     {
         return frase;
+    }
+    virtual string toStr() override
+    {
+        string a = frase;
+        a.pop_back();
+        string aux = string("\\") + a + string("\\\"");
+        return aux;
     }
 };
 
@@ -294,21 +301,22 @@ class Unario : public Node
 {
 protected:
     Node *value;
-    char operation;
+    string operation;
 
 public:
-    Unario(char op, Node *v)
+    Unario(string op, Node *v)
     {
         value = v;
         operation = op;
         children.push_back(v);
     }
-
+    virtual Node *getNode()
+    {
+        return value;
+    }
     virtual string toStr() override
     {
-        string aux;
-        aux.push_back(operation);
-        return aux;
+        return operation;
     }
 };
 
@@ -392,8 +400,13 @@ public:
     {
         for (Node *c : noh->getChildren())
         {
+            //------ Verificação Semantica 3--------
+            checkUnary(noh);
+
             check(c);
         }
+
+        //------ Inicio Verificação Semantica 2--------
         /*verifica se existem nós do tipo Se, SeSenao ou Enquanto
         para direcionar o nó de condições dele para a verificação
         de condição
@@ -417,6 +430,9 @@ public:
             checkStringCondition(senao->getCondition());
             return;
         }
+        //------ Fim Verificação Semantica 2--------
+
+        //------ Inicio Verificação Semantica 1--------
 
         /*
         Verifica se os nós ID já foram
@@ -509,25 +525,25 @@ public:
                 }
             }
 
-             /*
-            Caso a atribuição seja de uma expressão, pega o verifica 
-            o tipo do primeiro elemento da expressão
-            P.e:
-            ----------
-            a=-10;
-            b="asv";
-            c=b+a
-            se(c){ mostra a; }
-            -------
-            Portanto c será percentente a mesma classe do b, logo c é 
-            percentence a classe Palavra, portanto C não irá entrar na 
-            estrutura condicional 'Se'
-            */
+            /*
+           Caso a atribuição seja de uma expressão, pega o verifica
+           o tipo do primeiro elemento da expressão
+           P.e:
+           ----------
+           a=-10;
+           b="asv";
+           c=b+a
+           se(c){ mostra a; }
+           -------
+           Portanto c será percentente a mesma classe do b, logo c é
+           percentence a classe Palavra, portanto C não irá entrar na
+           estrutura condicional 'Se'
+           */
 
-            OpBinaria *aux,*opb = dynamic_cast<OpBinaria *>(n);
+            OpBinaria *aux, *opb = dynamic_cast<OpBinaria *>(n);
             while (opb != NULL)
             {
-                aux=opb;
+                aux = opb;
                 opb = dynamic_cast<OpBinaria *>(opb->getNode1());
             }
 
@@ -578,10 +594,13 @@ public:
                 }
             }
         }
+        //------ Fim Verificação Semantica 2--------
     }
 
     void checkStringCondition(Node *noh)
     {
+        //---- Verificação semântica 2---------
+
         /*verifica se existe apenas
         string na condição das
         estruturas,Enquanto, Se, SeSenão*/
@@ -617,9 +636,39 @@ public:
         }
     }
 
-    // void checkUnary(Node *noh){
+    void checkUnary(Node *noh)
+    { // recebe o noh acima do noh unário
+        /*
+        Verifica se existe um unário
+        cujo conteúdo do nó seja uma string.
+        Se for uma string apenas, substitui o
+         nó unário por um nó do tipo Palavra
+        */
+        int n_toDelete = 0;
+        for (Node *c : noh->getChildren())
+        {
+            Unario *un = dynamic_cast<Unario *>(c);
 
-    // }
+            if (un)
+            {
+                Unario *aux;
+                for (Unario *un1 = dynamic_cast<Unario *>(un);
+                     un1;
+                     aux=un1,un1=dynamic_cast<Unario*>(un1->getNode()));
+
+
+
+                Palavra *p = dynamic_cast<Palavra *>(aux->getNode());
+                if (p)
+                {
+                    noh->children.push_back(new Palavra(p->getFrase()));
+                    noh->children.erase(noh->children.begin() + n_toDelete);
+                    checkUnary(noh);
+                }
+            }
+            n_toDelete++;
+        }
+    }
 };
 
 // verifica se está acontecendo operações binárias entre tipos diferentes de dados

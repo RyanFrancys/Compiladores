@@ -21,7 +21,7 @@ Materia de Compiladores durante a faculdade de Ciência da Computação
 >>`mostra b;`
 >>>### retorno:    
 >>>`erro4 14:0: Erro Semântico: b Não definido`
->
+
 > ### 2. Verificação se as condições de estruturas contém apenas String.
 >   
 >   * Verifica se as condições das estruturas `Se`, `Se-senão` e `Enquanto` possuem apenas `String` na sua estrutura de condição.
@@ -30,13 +30,26 @@ Materia de Compiladores durante a faculdade de Ciência da Computação
 >>`se(a){mostra a;}`
 >>>### retorno:    
 >>>`Erro semântico: Não use apenas uma variável do tipo [Palavra] em uma Condição`
->
-> ### 3. 
-.  
-.  
-.  
 
-TODO
+> ### 3. Verificação de String unária
+    > * Verifica se existe algum Unário com conteúdo apenas de string
+    >> Por exemplo:  
+    >>`a= -+--"abc";`  
+    >
+    > Este únario será convertido em apenas um nó comum de string na árvore sintática.  
+    >> Portanto o código acima é equivalente ao seguinte código:  
+    >>`a= "abc";`  
+    >>
+    >>> ### retorno:  
+    >>> Esta verificação sermântica não mostra algo quando é processada
+
+> ### 4. 
+    > TODO  
+    > verifica se as operações binárias são todas do mesmo tipo
+    se existir, substitui o nó únario pelo nó String
+.
+.  
+.  
 
 
 
