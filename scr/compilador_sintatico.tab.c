@@ -125,25 +125,31 @@ enum yysymbol_kind_t
   YYSYMBOL_TOK_DIFERENTE = 19,             /* TOK_DIFERENTE  */
   YYSYMBOL_20_ = 20,                       /* '='  */
   YYSYMBOL_21_ = 21,                       /* ';'  */
-  YYSYMBOL_22_ = 22,                       /* '{'  */
-  YYSYMBOL_23_ = 23,                       /* '}'  */
-  YYSYMBOL_24_ = 24,                       /* '('  */
-  YYSYMBOL_25_ = 25,                       /* ')'  */
+  YYSYMBOL_22_ = 22,                       /* '('  */
+  YYSYMBOL_23_ = 23,                       /* ')'  */
+  YYSYMBOL_24_ = 24,                       /* '{'  */
+  YYSYMBOL_25_ = 25,                       /* '}'  */
   YYSYMBOL_26_ = 26,                       /* '<'  */
   YYSYMBOL_27_ = 27,                       /* '>'  */
-  YYSYMBOL_28_ = 28,                       /* '+'  */
-  YYSYMBOL_29_ = 29,                       /* '-'  */
-  YYSYMBOL_30_ = 30,                       /* '*'  */
-  YYSYMBOL_31_ = 31,                       /* '/'  */
-  YYSYMBOL_YYACCEPT = 32,                  /* $accept  */
-  YYSYMBOL_program = 33,                   /* program  */
-  YYSYMBOL_globals = 34,                   /* globals  */
-  YYSYMBOL_global = 35,                    /* global  */
-  YYSYMBOL_cmprt = 36,                     /* cmprt  */
-  YYSYMBOL_expr = 37,                      /* expr  */
-  YYSYMBOL_term = 38,                      /* term  */
-  YYSYMBOL_factor = 39,                    /* factor  */
-  YYSYMBOL_unary = 40                      /* unary  */
+  YYSYMBOL_28_ = 28,                       /* '['  */
+  YYSYMBOL_29_ = 29,                       /* ']'  */
+  YYSYMBOL_30_ = 30,                       /* '!'  */
+  YYSYMBOL_31_ = 31,                       /* '+'  */
+  YYSYMBOL_32_ = 32,                       /* '-'  */
+  YYSYMBOL_33_ = 33,                       /* '*'  */
+  YYSYMBOL_34_ = 34,                       /* '/'  */
+  YYSYMBOL_35_ = 35,                       /* '^'  */
+  YYSYMBOL_YYACCEPT = 36,                  /* $accept  */
+  YYSYMBOL_program = 37,                   /* program  */
+  YYSYMBOL_globals = 38,                   /* globals  */
+  YYSYMBOL_global = 39,                    /* global  */
+  YYSYMBOL_cmprt = 40,                     /* cmprt  */
+  YYSYMBOL_cmprt2 = 41,                    /* cmprt2  */
+  YYSYMBOL_cmprt3 = 42,                    /* cmprt3  */
+  YYSYMBOL_expr = 43,                      /* expr  */
+  YYSYMBOL_term = 44,                      /* term  */
+  YYSYMBOL_factor = 45,                    /* factor  */
+  YYSYMBOL_unary = 46                      /* unary  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -469,18 +475,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  28
+#define YYFINAL  26
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   153
+#define YYLAST   162
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  32
+#define YYNTOKENS  36
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  9
+#define YYNNTS  11
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  35
+#define YYNRULES  40
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  79
+#define YYNSTATES  85
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   274
@@ -500,16 +506,16 @@ static const yytype_int8 yytranslate[] =
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      24,    25,    30,    28,     2,    29,     2,    31,     2,     2,
+       2,     2,     2,    30,     2,     2,     2,     2,     2,     2,
+      22,    23,    33,    31,     2,    32,     2,    34,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,    21,
       26,    20,    27,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,    28,     2,    29,    35,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    22,     2,    23,     2,     2,     2,     2,
+       2,     2,     2,    24,     2,    25,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -532,9 +538,10 @@ static const yytype_int8 yytranslate[] =
 static const yytype_int8 yyrline[] =
 {
        0,    45,    45,    66,    68,    73,    74,    75,    76,    77,
-      78,    79,    80,    83,    84,    85,    86,    87,    88,    89,
-      91,    92,    93,    95,    96,    97,    99,   100,   101,   102,
-     103,   104,   105,   106,   108,   109
+      78,    79,    80,    83,    84,    85,    86,    87,    89,    90,
+      91,    93,    94,    95,    97,    98,    99,   101,   102,   103,
+     104,   106,   107,   108,   109,   110,   111,   112,   113,   115,
+     116
 };
 #endif
 
@@ -554,9 +561,10 @@ static const char *const yytname[] =
   "TOK_INTEIRO", "TOK_PALAVRA", "TOK_VERDADEIRO", "TOK_FALSO",
   "TOK_MOSTRA", "TOK_ENQUANTO", "TOK_SE", "TOK_SENAO", "TOK_CASO",
   "TOK_LOOP", "TOK_E", "TOK_OU", "TOK_NAO", "TOK_IGUAL", "TOK_DIFERENTE",
-  "'='", "';'", "'{'", "'}'", "'('", "')'", "'<'", "'>'", "'+'", "'-'",
-  "'*'", "'/'", "$accept", "program", "globals", "global", "cmprt", "expr",
-  "term", "factor", "unary", YY_NULLPTR
+  "'='", "';'", "'('", "')'", "'{'", "'}'", "'<'", "'>'", "'['", "']'",
+  "'!'", "'+'", "'-'", "'*'", "'/'", "'^'", "$accept", "program",
+  "globals", "global", "cmprt", "cmprt2", "cmprt3", "expr", "term",
+  "factor", "unary", YY_NULLPTR
 };
 
 static const char *
@@ -566,12 +574,12 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-27)
+#define YYPACT_NINF (-43)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
 
-#define YYTABLE_NINF (-26)
+#define YYTABLE_NINF (-3)
 
 #define yytable_value_is_error(Yyn) \
   0
@@ -580,14 +588,15 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     129,   -16,   -11,    33,    60,    60,     5,    28,    20,   -27,
-     -27,    33,   -27,   -27,   -27,   -27,   -27,   -27,    33,    33,
-      33,    11,   -27,    60,    13,   -27,    26,   129,   -27,   -27,
-     -17,   -15,   -27,   -22,   -27,   -27,   -27,   126,    46,   129,
-     129,    69,   -27,    33,    33,    33,    33,   -27,    60,    60,
-      60,    60,    60,    60,    84,    99,   -27,   -15,   -15,   -27,
-     -27,    24,    34,    35,    48,    56,    57,   -27,    74,   -27,
-     -27,   -27,   -27,   -27,   -27,    36,   129,   114,   -27
+     134,   -19,    -7,    35,     2,    15,    26,    59,   120,   -43,
+     -43,    35,   -43,   -43,   -43,   -43,   -43,   -43,    35,    35,
+      35,    39,   -43,     1,     1,   134,   -43,   -43,     4,    14,
+     -43,    54,   -43,   -43,   -43,     1,    33,    -6,     3,   -43,
+     -43,   135,    62,   -43,    35,    35,    35,    35,    35,   -43,
+      81,     1,     1,     1,    38,     1,     1,     1,     1,    40,
+     -43,    14,    14,   -43,   -43,   -43,   -43,   123,     3,     3,
+     134,     3,     3,   -43,   -43,   134,   -43,    79,    91,   -43,
+      56,    50,   134,   108,   -43
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -596,25 +605,28 @@ static const yytype_int16 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,    12,     0,     0,     0,     0,     0,     0,     0,     4,
-      11,     0,    29,    30,    28,    27,    33,    32,     0,     0,
-       0,     0,    31,     0,     0,    19,     0,     0,     1,     3,
-       0,    22,    25,     0,    35,    34,     6,     0,    19,     0,
-       0,     0,     5,     0,     0,     0,     0,    26,     0,     0,
-       0,     0,     0,     0,     0,     0,    10,    20,    21,    23,
-      24,     0,     0,     0,     0,     0,     0,     9,     7,    13,
-      14,    18,    16,    15,    17,     0,     0,     0,     8
+      11,     0,    34,    35,    33,    32,    38,    37,     0,     0,
+       0,     0,    36,     0,     0,     0,     1,     3,     0,    26,
+      30,     0,    40,    39,     6,     0,     0,     0,    17,    20,
+      22,     0,     0,     5,     0,     0,     0,     0,     0,    31,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+      10,    24,    25,    27,    28,    29,    21,     0,    13,    14,
+       0,    15,    16,    18,    19,     0,    23,     0,     0,     9,
+       7,     0,     0,     0,     8
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -27,   -27,   -26,    -8,     3,    79,   -19,    -1,   -27
+     -43,   -43,   -24,    -8,   -21,    72,   -42,    60,     0,     8,
+     -43
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     7,     8,     9,    24,    33,    31,    25,    22
+       0,     7,     8,     9,    37,    38,    39,    28,    29,    40,
+      22
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -622,74 +634,79 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      29,    41,    21,    47,    42,    10,    43,    44,    26,    11,
-      32,    43,    44,    54,    55,    45,    46,    32,    34,    35,
-      -2,     1,    38,     2,    57,    58,    37,    27,    28,     3,
-       4,     5,    36,    29,     6,    39,    12,    13,    14,    15,
-      16,    17,    32,    32,    59,    60,    29,    29,    40,    69,
-      77,    61,    62,    63,    64,    65,    66,    18,    76,    70,
-      71,    19,    20,    12,    13,    14,    15,    16,    17,    29,
-       1,   -25,     2,    72,   -25,   -25,   -25,   -25,     3,     4,
-       5,    73,    74,     6,    23,     1,    75,     2,    19,    20,
-      30,     0,    56,     3,     4,     5,     0,     0,     6,     0,
-       1,     0,     2,     0,     0,     0,     0,    67,     3,     4,
-       5,     0,     0,     6,     0,     1,     0,     2,     0,     0,
-       0,     0,    68,     3,     4,     5,     0,     0,     6,     0,
-       1,     0,     2,     0,     0,     0,     0,    78,     3,     4,
-       5,    48,    49,     6,    50,    51,     0,     0,     0,     0,
-       0,     0,    52,    53
+      27,    42,    10,    41,    12,    13,    14,    15,    16,    17,
+      52,    21,    53,    11,    50,    73,    74,    54,    57,    30,
+      55,    56,    58,    18,    23,    43,    30,    32,    33,    35,
+      67,    36,    19,    20,    27,    44,    45,    24,    12,    13,
+      14,    15,    16,    17,    61,    62,    77,    46,    47,    48,
+      25,    78,    30,    30,    63,    64,    65,    18,    83,    26,
+      34,    51,    70,     1,    75,     2,    19,    20,    81,    27,
+      27,     3,     4,     5,    82,    27,     6,    49,    31,     0,
+       1,     0,     2,     0,     0,    44,    45,    60,     3,     4,
+       5,     0,     1,     6,     2,     0,     0,    52,     0,    53,
+       3,     4,     5,     0,    79,     6,     0,    55,    56,     1,
+      66,     2,     0,     0,     0,     0,    80,     3,     4,     5,
+      -2,     1,     6,     2,    68,    69,     0,    71,    72,     3,
+       4,     5,     0,    84,     6,     1,     0,     2,     0,    52,
+       0,    53,     0,     3,     4,     5,     0,     0,     6,    55,
+      56,    52,    76,    53,     0,     0,     0,     0,    59,     0,
+       0,    55,    56
 };
 
 static const yytype_int8 yycheck[] =
 {
-       8,    27,     3,    25,    21,    21,    28,    29,     5,    20,
-      11,    28,    29,    39,    40,    30,    31,    18,    19,    20,
-       0,     1,    23,     3,    43,    44,    23,    22,     0,     9,
-      10,    11,    21,    41,    14,    22,     3,     4,     5,     6,
-       7,     8,    43,    44,    45,    46,    54,    55,    22,    25,
-      76,    48,    49,    50,    51,    52,    53,    24,    22,    25,
-      25,    28,    29,     3,     4,     5,     6,     7,     8,    77,
-       1,    25,     3,    25,    28,    29,    30,    31,     9,    10,
-      11,    25,    25,    14,    24,     1,    12,     3,    28,    29,
-      11,    -1,    23,     9,    10,    11,    -1,    -1,    14,    -1,
-       1,    -1,     3,    -1,    -1,    -1,    -1,    23,     9,    10,
-      11,    -1,    -1,    14,    -1,     1,    -1,     3,    -1,    -1,
-      -1,    -1,    23,     9,    10,    11,    -1,    -1,    14,    -1,
-       1,    -1,     3,    -1,    -1,    -1,    -1,    23,     9,    10,
-      11,    15,    16,    14,    18,    19,    -1,    -1,    -1,    -1,
-      -1,    -1,    26,    27
+       8,    25,    21,    24,     3,     4,     5,     6,     7,     8,
+      16,     3,    18,    20,    35,    57,    58,    23,    15,    11,
+      26,    27,    19,    22,    22,    21,    18,    19,    20,    28,
+      51,    30,    31,    32,    42,    31,    32,    22,     3,     4,
+       5,     6,     7,     8,    44,    45,    70,    33,    34,    35,
+      24,    75,    44,    45,    46,    47,    48,    22,    82,     0,
+      21,    28,    24,     1,    24,     3,    31,    32,    12,    77,
+      78,     9,    10,    11,    24,    83,    14,    23,    18,    -1,
+       1,    -1,     3,    -1,    -1,    31,    32,    25,     9,    10,
+      11,    -1,     1,    14,     3,    -1,    -1,    16,    -1,    18,
+       9,    10,    11,    -1,    25,    14,    -1,    26,    27,     1,
+      29,     3,    -1,    -1,    -1,    -1,    25,     9,    10,    11,
+       0,     1,    14,     3,    52,    53,    -1,    55,    56,     9,
+      10,    11,    -1,    25,    14,     1,    -1,     3,    -1,    16,
+      -1,    18,    -1,     9,    10,    11,    -1,    -1,    14,    26,
+      27,    16,    29,    18,    -1,    -1,    -1,    -1,    23,    -1,
+      -1,    26,    27
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     1,     3,     9,    10,    11,    14,    33,    34,    35,
-      21,    20,     3,     4,     5,     6,     7,     8,    24,    28,
-      29,    39,    40,    24,    36,    39,    36,    22,     0,    35,
-      37,    38,    39,    37,    39,    39,    21,    36,    39,    22,
-      22,    34,    21,    28,    29,    30,    31,    25,    15,    16,
-      18,    19,    26,    27,    34,    34,    23,    38,    38,    39,
-      39,    36,    36,    36,    36,    36,    36,    23,    23,    25,
-      25,    25,    25,    25,    25,    12,    22,    34,    23
+       0,     1,     3,     9,    10,    11,    14,    37,    38,    39,
+      21,    20,     3,     4,     5,     6,     7,     8,    22,    31,
+      32,    45,    46,    22,    22,    24,     0,    39,    43,    44,
+      45,    43,    45,    45,    21,    28,    30,    40,    41,    42,
+      45,    40,    38,    21,    31,    32,    33,    34,    35,    23,
+      40,    28,    16,    18,    23,    26,    27,    15,    19,    23,
+      25,    44,    44,    45,    45,    45,    29,    40,    41,    41,
+      24,    41,    41,    42,    42,    24,    29,    38,    38,    25,
+      25,    12,    24,    38,    25
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    32,    33,    34,    34,    35,    35,    35,    35,    35,
-      35,    35,    35,    36,    36,    36,    36,    36,    36,    36,
-      37,    37,    37,    38,    38,    38,    39,    39,    39,    39,
-      39,    39,    39,    39,    40,    40
+       0,    36,    37,    38,    38,    39,    39,    39,    39,    39,
+      39,    39,    39,    40,    40,    40,    40,    40,    41,    41,
+      41,    42,    42,    42,    43,    43,    43,    44,    44,    44,
+      44,    45,    45,    45,    45,    45,    45,    45,    45,    46,
+      46
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     1,     2,     1,     4,     3,     5,     9,     5,
-       4,     2,     1,     5,     5,     5,     5,     5,     5,     1,
-       3,     3,     1,     3,     3,     1,     3,     1,     1,     1,
-       1,     1,     1,     1,     2,     2
+       0,     2,     1,     2,     1,     4,     3,     7,    11,     7,
+       4,     2,     1,     3,     3,     3,     3,     1,     3,     3,
+       1,     3,     1,     4,     3,     3,     1,     3,     3,     3,
+       1,     3,     1,     1,     1,     1,     1,     1,     1,     2,
+       2
 };
 
 
@@ -1444,14 +1461,14 @@ yyreduce:
                         }
                         
                 }
-#line 1448 "compilador_sintatico.tab.c"
+#line 1465 "compilador_sintatico.tab.c"
     break;
 
   case 3: /* globals: globals global  */
 #line 66 "compilador_sintatico.y"
                             {(yyvsp[-1].node)->append((yyvsp[0].node));
                         (yyval.node) = (yyvsp[-1].node);       }
-#line 1455 "compilador_sintatico.tab.c"
+#line 1472 "compilador_sintatico.tab.c"
     break;
 
   case 4: /* globals: global  */
@@ -1459,197 +1476,227 @@ yyreduce:
                 {       Node *n = new Node();
                         n->append((yyvsp[0].node));
                         (yyval.node) = n; }
-#line 1463 "compilador_sintatico.tab.c"
+#line 1480 "compilador_sintatico.tab.c"
     break;
 
   case 5: /* global: TOK_ID '=' expr ';'  */
 #line 73 "compilador_sintatico.y"
                                 { (yyval.node) = new Variavel((yyvsp[-3].str),(yyvsp[-1].node));     }
-#line 1469 "compilador_sintatico.tab.c"
+#line 1486 "compilador_sintatico.tab.c"
     break;
 
   case 6: /* global: TOK_MOSTRA factor ';'  */
 #line 74 "compilador_sintatico.y"
                                { (yyval.node) = new Mostra((yyvsp[-1].node));      }
-#line 1475 "compilador_sintatico.tab.c"
+#line 1492 "compilador_sintatico.tab.c"
     break;
 
-  case 7: /* global: TOK_SE cmprt '{' globals '}'  */
+  case 7: /* global: TOK_SE '(' cmprt ')' '{' globals '}'  */
 #line 75 "compilador_sintatico.y"
-                                        { (yyval.node) = new Se((yyvsp[-3].node),(yyvsp[-1].node)); }
-#line 1481 "compilador_sintatico.tab.c"
+                                                { (yyval.node) = new Se((yyvsp[-4].node),(yyvsp[-1].node)); }
+#line 1498 "compilador_sintatico.tab.c"
     break;
 
-  case 8: /* global: TOK_SE cmprt '{' globals '}' TOK_SENAO '{' globals '}'  */
+  case 8: /* global: TOK_SE '(' cmprt ')' '{' globals '}' TOK_SENAO '{' globals '}'  */
 #line 76 "compilador_sintatico.y"
-                                                                                { (yyval.node) = new SeSenao((yyvsp[-7].node),(yyvsp[-5].node),(yyvsp[-1].node));     }
-#line 1487 "compilador_sintatico.tab.c"
+                                                                                        { (yyval.node) = new SeSenao((yyvsp[-8].node),(yyvsp[-5].node),(yyvsp[-1].node));     }
+#line 1504 "compilador_sintatico.tab.c"
     break;
 
-  case 9: /* global: TOK_ENQUANTO cmprt '{' globals '}'  */
+  case 9: /* global: TOK_ENQUANTO '(' cmprt ')' '{' globals '}'  */
 #line 77 "compilador_sintatico.y"
-                                                { (yyval.node) = new Enquanto((yyvsp[-3].node),(yyvsp[-1].node));   }
-#line 1493 "compilador_sintatico.tab.c"
+                                                       { (yyval.node) = new Enquanto((yyvsp[-4].node),(yyvsp[-1].node));   }
+#line 1510 "compilador_sintatico.tab.c"
     break;
 
   case 10: /* global: TOK_LOOP '{' globals '}'  */
 #line 78 "compilador_sintatico.y"
                                         { (yyval.node) = new Loop((yyvsp[-1].node));      }
-#line 1499 "compilador_sintatico.tab.c"
+#line 1516 "compilador_sintatico.tab.c"
     break;
 
   case 11: /* global: error ';'  */
 #line 79 "compilador_sintatico.y"
                         { (yyval.node) = new Node();      }
-#line 1505 "compilador_sintatico.tab.c"
+#line 1522 "compilador_sintatico.tab.c"
     break;
 
   case 12: /* global: error  */
 #line 80 "compilador_sintatico.y"
                 { (yyval.node) = new Node();      }
-#line 1511 "compilador_sintatico.tab.c"
+#line 1528 "compilador_sintatico.tab.c"
     break;
 
-  case 13: /* cmprt: '(' cmprt TOK_E cmprt ')'  */
+  case 13: /* cmprt: cmprt TOK_OU cmprt2  */
 #line 83 "compilador_sintatico.y"
-                                                { (yyval.node) = new OpBinaria((yyvsp[-3].node),'&',(yyvsp[-1].node));      }
-#line 1517 "compilador_sintatico.tab.c"
+                                           { (yyval.node) = new OpBinaria((yyvsp[-2].node),'|',(yyvsp[0].node));      }
+#line 1534 "compilador_sintatico.tab.c"
     break;
 
-  case 14: /* cmprt: '(' cmprt TOK_OU cmprt ')'  */
+  case 14: /* cmprt: cmprt TOK_IGUAL cmprt2  */
 #line 84 "compilador_sintatico.y"
-                                                { (yyval.node) = new OpBinaria((yyvsp[-3].node),'|',(yyvsp[-1].node));      }
-#line 1523 "compilador_sintatico.tab.c"
+                                          { (yyval.node) = new OpBinaria((yyvsp[-2].node),'=',(yyvsp[0].node));      }
+#line 1540 "compilador_sintatico.tab.c"
     break;
 
-  case 15: /* cmprt: '(' cmprt '<' cmprt ')'  */
+  case 15: /* cmprt: cmprt '<' cmprt2  */
 #line 85 "compilador_sintatico.y"
-                                                { (yyval.node) = new OpBinaria((yyvsp[-3].node),'<',(yyvsp[-1].node));      }
-#line 1529 "compilador_sintatico.tab.c"
+                                           { (yyval.node) = new OpBinaria((yyvsp[-2].node),'<',(yyvsp[0].node));      }
+#line 1546 "compilador_sintatico.tab.c"
     break;
 
-  case 16: /* cmprt: '(' cmprt TOK_DIFERENTE cmprt ')'  */
+  case 16: /* cmprt: cmprt '>' cmprt2  */
 #line 86 "compilador_sintatico.y"
-                                                        { (yyval.node) = new OpBinaria((yyvsp[-3].node),'!',(yyvsp[-1].node));      }
-#line 1535 "compilador_sintatico.tab.c"
+                                           { (yyval.node) = new OpBinaria((yyvsp[-2].node),'>',(yyvsp[0].node));      }
+#line 1552 "compilador_sintatico.tab.c"
     break;
 
-  case 17: /* cmprt: '(' cmprt '>' cmprt ')'  */
+  case 17: /* cmprt: cmprt2  */
 #line 87 "compilador_sintatico.y"
-                                                { (yyval.node) = new OpBinaria((yyvsp[-3].node),'>',(yyvsp[-1].node));      }
-#line 1541 "compilador_sintatico.tab.c"
+                  {      (yyval.node) = (yyvsp[0].node);  }
+#line 1558 "compilador_sintatico.tab.c"
     break;
 
-  case 18: /* cmprt: '(' cmprt TOK_IGUAL cmprt ')'  */
-#line 88 "compilador_sintatico.y"
-                                                { (yyval.node) = new OpBinaria((yyvsp[-3].node),'=',(yyvsp[-1].node));      }
-#line 1547 "compilador_sintatico.tab.c"
-    break;
-
-  case 19: /* cmprt: factor  */
+  case 18: /* cmprt2: cmprt2 TOK_E cmprt3  */
 #line 89 "compilador_sintatico.y"
-                { (yyval.node) = (yyvsp[0].node); }
-#line 1553 "compilador_sintatico.tab.c"
+                                             { (yyval.node) = new OpBinaria((yyvsp[-2].node),'&',(yyvsp[0].node));      }
+#line 1564 "compilador_sintatico.tab.c"
     break;
 
-  case 20: /* expr: expr '+' term  */
+  case 19: /* cmprt2: cmprt2 TOK_DIFERENTE cmprt3  */
+#line 90 "compilador_sintatico.y"
+                                                    { (yyval.node) = new OpBinaria((yyvsp[-2].node),'!',(yyvsp[0].node));      }
+#line 1570 "compilador_sintatico.tab.c"
+    break;
+
+  case 20: /* cmprt2: cmprt3  */
 #line 91 "compilador_sintatico.y"
-                           {(yyval.node) = new OpBinaria((yyvsp[-2].node),'+',(yyvsp[0].node));   }
-#line 1559 "compilador_sintatico.tab.c"
+                        { (yyval.node) = (yyvsp[0].node); }
+#line 1576 "compilador_sintatico.tab.c"
     break;
 
-  case 21: /* expr: expr '-' term  */
-#line 92 "compilador_sintatico.y"
-                           {(yyval.node) = new OpBinaria((yyvsp[-2].node),'-',(yyvsp[0].node));   }
-#line 1565 "compilador_sintatico.tab.c"
-    break;
-
-  case 22: /* expr: term  */
+  case 21: /* cmprt3: '[' cmprt ']'  */
 #line 93 "compilador_sintatico.y"
-                { (yyval.node) = (yyvsp[0].node);   }
-#line 1571 "compilador_sintatico.tab.c"
+                         { (yyval.node) = (yyvsp[-1].node); }
+#line 1582 "compilador_sintatico.tab.c"
     break;
 
-  case 23: /* term: term '*' factor  */
+  case 22: /* cmprt3: factor  */
+#line 94 "compilador_sintatico.y"
+                        { (yyval.node) = (yyvsp[0].node); }
+#line 1588 "compilador_sintatico.tab.c"
+    break;
+
+  case 23: /* cmprt3: '!' '[' cmprt ']'  */
 #line 95 "compilador_sintatico.y"
-                           {  (yyval.node) = new OpBinaria((yyvsp[-2].node),'*',(yyvsp[0].node));}
-#line 1577 "compilador_sintatico.tab.c"
+                               { (yyval.node) = new Unario("!",(yyvsp[-1].node)); }
+#line 1594 "compilador_sintatico.tab.c"
     break;
 
-  case 24: /* term: term '/' factor  */
-#line 96 "compilador_sintatico.y"
-                                   { (yyval.node) = new OpBinaria((yyvsp[-2].node),'/',(yyvsp[0].node));        }
-#line 1583 "compilador_sintatico.tab.c"
-    break;
-
-  case 25: /* term: factor  */
+  case 24: /* expr: expr '+' term  */
 #line 97 "compilador_sintatico.y"
-                { (yyval.node) = (yyvsp[0].node); }
-#line 1589 "compilador_sintatico.tab.c"
+                           {(yyval.node) = new OpBinaria((yyvsp[-2].node),'+',(yyvsp[0].node));   }
+#line 1600 "compilador_sintatico.tab.c"
     break;
 
-  case 26: /* factor: '(' expr ')'  */
+  case 25: /* expr: expr '-' term  */
+#line 98 "compilador_sintatico.y"
+                           {(yyval.node) = new OpBinaria((yyvsp[-2].node),'-',(yyvsp[0].node));   }
+#line 1606 "compilador_sintatico.tab.c"
+    break;
+
+  case 26: /* expr: term  */
 #line 99 "compilador_sintatico.y"
-                        { (yyval.node) = (yyvsp[-1].node);   }
-#line 1595 "compilador_sintatico.tab.c"
+                { (yyval.node) = (yyvsp[0].node);   }
+#line 1612 "compilador_sintatico.tab.c"
     break;
 
-  case 27: /* factor: TOK_PALAVRA  */
-#line 100 "compilador_sintatico.y"
-                        { (yyval.node) = new Palavra((yyvsp[0].str));       }
-#line 1601 "compilador_sintatico.tab.c"
-    break;
-
-  case 28: /* factor: TOK_INTEIRO  */
+  case 27: /* term: term '*' factor  */
 #line 101 "compilador_sintatico.y"
-                        { (yyval.node) = new Inteiro((yyvsp[0].itg));       }
-#line 1607 "compilador_sintatico.tab.c"
+                           {  (yyval.node) = new OpBinaria((yyvsp[-2].node),'*',(yyvsp[0].node));}
+#line 1618 "compilador_sintatico.tab.c"
     break;
 
-  case 29: /* factor: TOK_ID  */
+  case 28: /* term: term '/' factor  */
 #line 102 "compilador_sintatico.y"
-                { (yyval.node) = new Id((yyvsp[0].str));    }
-#line 1613 "compilador_sintatico.tab.c"
+                                   { (yyval.node) = new OpBinaria((yyvsp[-2].node),'/',(yyvsp[0].node));        }
+#line 1624 "compilador_sintatico.tab.c"
     break;
 
-  case 30: /* factor: TOK_PF  */
+  case 29: /* term: term '^' factor  */
 #line 103 "compilador_sintatico.y"
-                { (yyval.node) = new Pf((yyvsp[0].flt)); }
-#line 1619 "compilador_sintatico.tab.c"
+                                   { (yyval.node) = new OpBinaria((yyvsp[-2].node),'^',(yyvsp[0].node));        }
+#line 1630 "compilador_sintatico.tab.c"
     break;
 
-  case 31: /* factor: unary  */
+  case 30: /* term: factor  */
 #line 104 "compilador_sintatico.y"
                 { (yyval.node) = (yyvsp[0].node); }
-#line 1625 "compilador_sintatico.tab.c"
+#line 1636 "compilador_sintatico.tab.c"
     break;
 
-  case 32: /* factor: TOK_FALSO  */
-#line 105 "compilador_sintatico.y"
-                        { (yyval.node) = new Boleano(false);       }
-#line 1631 "compilador_sintatico.tab.c"
-    break;
-
-  case 33: /* factor: TOK_VERDADEIRO  */
+  case 31: /* factor: '(' expr ')'  */
 #line 106 "compilador_sintatico.y"
-                        { (yyval.node)= new Boleano(true);        }
-#line 1637 "compilador_sintatico.tab.c"
+                        { (yyval.node) = (yyvsp[-1].node);   }
+#line 1642 "compilador_sintatico.tab.c"
     break;
 
-  case 34: /* unary: '-' factor  */
+  case 32: /* factor: TOK_PALAVRA  */
+#line 107 "compilador_sintatico.y"
+                        { (yyval.node) = new Palavra((yyvsp[0].str));       }
+#line 1648 "compilador_sintatico.tab.c"
+    break;
+
+  case 33: /* factor: TOK_INTEIRO  */
 #line 108 "compilador_sintatico.y"
-                        { (yyval.node) = new Unario("-",(yyvsp[0].node));   }
-#line 1643 "compilador_sintatico.tab.c"
+                        { (yyval.node) = new Inteiro((yyvsp[0].itg));       }
+#line 1654 "compilador_sintatico.tab.c"
     break;
 
-  case 35: /* unary: '+' factor  */
+  case 34: /* factor: TOK_ID  */
 #line 109 "compilador_sintatico.y"
+                { (yyval.node) = new Id((yyvsp[0].str));    }
+#line 1660 "compilador_sintatico.tab.c"
+    break;
+
+  case 35: /* factor: TOK_PF  */
+#line 110 "compilador_sintatico.y"
+                { (yyval.node) = new Pf((yyvsp[0].flt)); }
+#line 1666 "compilador_sintatico.tab.c"
+    break;
+
+  case 36: /* factor: unary  */
+#line 111 "compilador_sintatico.y"
+                { (yyval.node) = (yyvsp[0].node); }
+#line 1672 "compilador_sintatico.tab.c"
+    break;
+
+  case 37: /* factor: TOK_FALSO  */
+#line 112 "compilador_sintatico.y"
+                        { (yyval.node) = new Boleano(false);       }
+#line 1678 "compilador_sintatico.tab.c"
+    break;
+
+  case 38: /* factor: TOK_VERDADEIRO  */
+#line 113 "compilador_sintatico.y"
+                        { (yyval.node)= new Boleano(true);        }
+#line 1684 "compilador_sintatico.tab.c"
+    break;
+
+  case 39: /* unary: '-' factor  */
+#line 115 "compilador_sintatico.y"
+                        { (yyval.node) = new Unario("-",(yyvsp[0].node));   }
+#line 1690 "compilador_sintatico.tab.c"
+    break;
+
+  case 40: /* unary: '+' factor  */
+#line 116 "compilador_sintatico.y"
                         { (yyval.node) = new Unario("+",(yyvsp[0].node));   }
-#line 1649 "compilador_sintatico.tab.c"
+#line 1696 "compilador_sintatico.tab.c"
     break;
 
 
-#line 1653 "compilador_sintatico.tab.c"
+#line 1700 "compilador_sintatico.tab.c"
 
       default: break;
     }
@@ -1873,5 +1920,5 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 111 "compilador_sintatico.y"
+#line 118 "compilador_sintatico.y"
 

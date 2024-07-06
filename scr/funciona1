@@ -10,12 +10,12 @@ se(boleano){
 }
 
 
-enquanto((1<a) E (2>b)){
+enquanto(1<a E 2>b){
     mostra "Condição Verdadeira!";
 }
 
 loop{
-    se((a<1) OU ((b<10)E(a!=b))){
+    se(a<1 E b<10 E a!=b){
         mostra "É válido";    
     }senao{
         mostra "Não é válido";
@@ -23,4 +23,5 @@ loop{
         b=b-1;
     }
 }
+
 

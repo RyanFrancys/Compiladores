@@ -21,7 +21,7 @@ loop{
             mostra ps2;
             mostra "!\n";
         }senao{
-            se(salario==(ps4_preco OU ps2_preco)){
+            se(salario==[ps4_preco OU ps2_preco]){
                 mostra "No preço Certo Para vocẽ";
             }senao{
                 mostra "Tentaremos melhorar nosso preço!";

@@ -27,7 +27,7 @@ c=verdadeiro;
         mostra "c não é menor que 10";
     }
 
-enquanto((a==c) OU (a<b)){
+enquanto([[a==c] OU [a<b]]){
     mostra "Olá Mundo! 1 ";
 }
 
@@ -35,6 +35,6 @@ loop{
     mostra "Olá Mundo! 2";
 }
 
-enquanto((c>5) E ((c<10) OU (c<39))){
+enquanto([c>5] E [[c<10] OU [c<39]]){
     a=10;
 }

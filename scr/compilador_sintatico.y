@@ -36,7 +36,7 @@ int yylex(void);
 %type<flt> TOK_PF
 %type<str> TOK_PALAVRA
 
-%type<node> globals global cmprt expr term factor unary
+%type<node> globals global cmprt cmprt2 cmprt3 expr term factor unary
 
 %start program 
 
@@ -72,21 +72,27 @@ globals: globals[gg] global {$gg->append($global);
 
 global: TOK_ID '=' expr ';'     { $$ = new Variavel($TOK_ID,$expr);     }
         |TOK_MOSTRA factor ';' { $$ = new Mostra($factor);      }
-        |TOK_SE  cmprt  '{' globals '}' { $$ = new Se($cmprt,$globals); }
-        |TOK_SE  cmprt  '{' globals[g1] '}' TOK_SENAO '{' globals[g2] '}'       { $$ = new SeSenao($cmprt,$g1,$g2);     }
-        |TOK_ENQUANTO  cmprt '{' globals '}'    { $$ = new Enquanto($cmprt,$globals);   }
+        |TOK_SE  '(' cmprt ')'  '{' globals '}' { $$ = new Se($cmprt,$globals); }
+        |TOK_SE  '(' cmprt ')'  '{' globals[g1] '}' TOK_SENAO '{' globals[g2] '}'       { $$ = new SeSenao($cmprt,$g1,$g2);     }
+        |TOK_ENQUANTO '(' cmprt ')' '{' globals '}'    { $$ = new Enquanto($cmprt,$globals);   }
         |TOK_LOOP '{' globals'}'        { $$ = new Loop($globals);      }
         |error ';'      { $$ = new Node();      }
         |error  { $$ = new Node();      }
 
 
-cmprt:  '(' cmprt[c1] TOK_E cmprt[c2] ')'       { $$ = new OpBinaria($c1,'&',$c2);      }
-        |'(' cmprt[c1] TOK_OU  cmprt[c2] ')'    { $$ = new OpBinaria($c1,'|',$c2);      }
-        |'(' cmprt[c1] '<' cmprt[c2] ')'        { $$ = new OpBinaria($c1,'<',$c2);      }
-        |'(' cmprt[c1] TOK_DIFERENTE cmprt[c2] ')'      { $$ = new OpBinaria($c1,'!',$c2);      }
-        |'(' cmprt[c1] '>' cmprt[c2] ')'        { $$ = new OpBinaria($c1,'>',$c2);      }
-        |'(' cmprt[c1] TOK_IGUAL cmprt[c2] ')'  { $$ = new OpBinaria($c1,'=',$c2);      }
-        |factor { $$ = $factor; }
+cmprt:    cmprt[c1] TOK_OU  cmprt2[c2]     { $$ = new OpBinaria($c1,'|',$c2);      }
+        | cmprt[c1] TOK_IGUAL cmprt2[c2]  { $$ = new OpBinaria($c1,'=',$c2);      }
+        | cmprt[c1] '<' cmprt2[c2]         { $$ = new OpBinaria($c1,'<',$c2);      }
+        | cmprt[c1] '>' cmprt2[c2]         { $$ = new OpBinaria($c1,'>',$c2);      }
+        | cmprt2  {      $$ = $cmprt2;  }
+
+cmprt2:   cmprt2[c1] TOK_E cmprt3[c2]        { $$ = new OpBinaria($c1,'&',$c2);      }
+        | cmprt2[c1] TOK_DIFERENTE cmprt3[c2]       { $$ = new OpBinaria($c1,'!',$c2);      }
+        | cmprt3        { $$ = $cmprt3; }
+
+cmprt3:  '[' cmprt ']'   { $$ = $cmprt; }
+        | factor        { $$ = $factor; }
+        |'!' '[' cmprt[c2] ']' { $$ = new Unario("!",$c2); }
 
 expr:   expr[e] '+' term   {$$ = new OpBinaria($e,'+',$term);   }
         |expr[e] '-' term  {$$ = new OpBinaria($e,'-',$term);   }
@@ -94,6 +100,7 @@ expr:   expr[e] '+' term   {$$ = new OpBinaria($e,'+',$term);   }
 
 term:   term[t] '*' factor {  $$ = new OpBinaria($t,'*',$factor);}
         |term[t] '/' factor        { $$ = new OpBinaria($t,'/',$factor);        }
+        |term[t] '^' factor        { $$ = new OpBinaria($t,'^',$factor);        }       
         |factor { $$ = $factor; }
 
 factor: '(' expr ')'    { $$ = $expr;   }

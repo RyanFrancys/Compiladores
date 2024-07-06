@@ -38,6 +38,10 @@ int yyerror(const char *s);
 ">" {return '>' ; }
 "{" {return '{' ; }
 "}" {return '}' ; }
+"^" {return '^' ;}
+"!" {return '!' ;}
+"[" {return '[' ; }
+"]" {return ']' ; }
 
 
 "verdadeiro" {return TOK_VERDADEIRO;}
