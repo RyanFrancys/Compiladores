@@ -31,14 +31,16 @@ Materia de Compiladores durante a faculdade de Ciência da Computação
 >>>### retorno:    
 >>>`Erro semântico: Não use apenas uma variável do tipo [Palavra] em uma Condição`
 
-> ### 3. Verificação de String unária
+> ### 3. Verificação de unários que contenham apenas Boleano ou String
     > * Verifica se existe algum Unário com conteúdo apenas de string
     >> Por exemplo:  
     >>`a= -+--"abc";`  
+    >>`b=---falso;`  
     >
-    > Este únario será convertido em apenas um nó comum de string na árvore sintática.  
+    > Este únario será convertido em apenas um nó comum de string/boleano na árvore sintática.  
     >> Portanto o código acima é equivalente ao seguinte código:  
     >>`a= "abc";`  
+    >>`a= "falso";`  
     >>
     >>> ### retorno:  
     >>> Esta verificação sermântica não mostra algo quando é processada
@@ -46,7 +48,6 @@ Materia de Compiladores durante a faculdade de Ciência da Computação
 > ### 4. 
     > TODO  
     > verifica se as operações binárias são todas do mesmo tipo
-    se existir, substitui o nó únario pelo nó String
 .
 .  
 .  

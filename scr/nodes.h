@@ -106,6 +106,10 @@ public:
     {
         return "Boleano";
     }
+    virtual bool getValue()
+    {
+        return value;
+    }
     virtual string toStr() override
     {
         if (value)
@@ -401,8 +405,8 @@ public:
         for (Node *c : noh->getChildren())
         {
             //------ Verificação Semantica 3--------
-            checkUnary(noh);
-
+            checkUnaryPalavra(noh);
+            checkUnaryBolean(noh);
             check(c);
         }
 
@@ -636,7 +640,7 @@ public:
         }
     }
 
-    void checkUnary(Node *noh)
+    void checkUnaryPalavra(Node *noh)
     { // recebe o noh acima do noh unário
         /*
         Verifica se existe um unário
@@ -645,6 +649,7 @@ public:
          nó unário por um nó do tipo Palavra
         */
         int n_toDelete = 0;
+
         for (Node *c : noh->getChildren())
         {
             Unario *un = dynamic_cast<Unario *>(c);
@@ -654,124 +659,50 @@ public:
                 Unario *aux;
                 for (Unario *un1 = dynamic_cast<Unario *>(un);
                      un1;
-                     aux=un1,un1=dynamic_cast<Unario*>(un1->getNode()));
-
-
+                     aux = un1, un1 = dynamic_cast<Unario *>(un1->getNode()))
+                    ;
 
                 Palavra *p = dynamic_cast<Palavra *>(aux->getNode());
                 if (p)
                 {
                     noh->children.push_back(new Palavra(p->getFrase()));
                     noh->children.erase(noh->children.begin() + n_toDelete);
-                    checkUnary(noh);
                 }
             }
             n_toDelete++;
         }
     }
-};
 
-// verifica se está acontecendo operações binárias entre tipos diferentes de dados
-class CheckTypeBinaryOp
-{
-private:
-    set<string> symbols_inteiro, symbols_pf, symbols_palavra, symbols_boleano, symbols_id;
+        void checkUnaryBolean(Node *noh)
+    { // recebe o noh acima do noh unário
+        /*
+        Verifica se existe um unário
+        cujo conteúdo do nó seja uma string.
+        Se for uma string apenas, substitui o
+         nó unário por um nó do tipo Palavra
+        */
+        int n_toDelete = 0;
 
-public:
-    CheckTypeBinaryOp() {}
-
-    void check(Node *noh)
-    {
         for (Node *c : noh->getChildren())
         {
-            check(c);
-        }
-        Variavel *var = dynamic_cast<Variavel *>(noh);
-        if (var)
-        {
-            Inteiro *i = dynamic_cast<Inteiro *>(var->getNode());
-            if (i)
+            Unario *un = dynamic_cast<Unario *>(c);
+
+            if (un)
             {
-                symbols_inteiro.insert(var->getName());
+                Unario *aux;
+                for (Unario *un1 = dynamic_cast<Unario *>(un);
+                     un1;
+                     aux = un1, un1 = dynamic_cast<Unario *>(un1->getNode()))
+                    ;
+
+                Boleano *b = dynamic_cast<Boleano *>(aux->getNode());
+                if (b)
+                {
+                    noh->children.push_back(new Boleano(b->getValue()));
+                    noh->children.erase(noh->children.begin() + n_toDelete);
+                }
             }
-
-            Pf *pf = dynamic_cast<Pf *>(var->getNode());
-            if (pf)
-            {
-                symbols_pf.insert(var->getName());
-            }
-
-            Palavra *p = dynamic_cast<Palavra *>(var->getNode());
-            if (p)
-            {
-                symbols_palavra.insert(var->getName());
-            }
-
-            Boleano *b = dynamic_cast<Boleano *>(var->getNode());
-            if (b)
-            {
-                symbols_boleano.insert(var->getName());
-            }
-
-            Id *id = dynamic_cast<Id *>(var->getNode());
-            if (id)
-            {
-                symbols_id.insert(var->getName());
-            }
-            return;
-        }
-
-        OpBinaria *opb = dynamic_cast<OpBinaria *>(noh);
-        if (opb)
-        {
-            Node *op1 = opb->getNode1();
-            Node *op2 = opb->getNode2();
-
-            Id *id1 = dynamic_cast<Id *>(op1);
-            Id *id2 = dynamic_cast<Id *>(op2);
-            if (id1 && id2)
-            {
-                return;
-            }
-
-            Inteiro *i1 = dynamic_cast<Inteiro *>(op1);
-            Inteiro *i2 = dynamic_cast<Inteiro *>(op2);
-            if (i1 && i2)
-            {
-                return;
-            }
-
-            Pf *pf1 = dynamic_cast<Pf *>(op1);
-            Pf *pf2 = dynamic_cast<Pf *>(op2);
-            if (pf1 && pf2)
-            {
-                return;
-            }
-
-            Boleano *b1 = dynamic_cast<Boleano *>(op1);
-            Boleano *b2 = dynamic_cast<Boleano *>(op2);
-            if (b1 && b2)
-            {
-                return;
-            }
-
-            Palavra *p1 = dynamic_cast<Palavra *>(op1);
-            Palavra *p2 = dynamic_cast<Palavra *>(op2);
-            if (p1 && p2)
-            {
-                return;
-            }
-
-            error_count++;
-            cout << build_file_name
-                 << " "
-                 << opb->getLineNo()
-                 << ":0: Semantic error: Operação entre ["
-                 << opb->getNode1()->getType()
-                 << "] e ["
-                 << opb->getNode2()->getType()
-                 << "] é inválido!\n"
-                 << endl;
+            n_toDelete++;
         }
     }
 };
