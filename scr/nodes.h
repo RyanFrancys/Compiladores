@@ -318,6 +318,10 @@ public:
     {
         return value;
     }
+    virtual string getType()
+    {
+        return value->getType();
+    }
     virtual string toStr() override
     {
         return operation;
@@ -344,6 +348,7 @@ public:
     virtual Node *getNode1() { return value1; }
 
     virtual Node *getNode2() { return value2; }
+    virtual string getOperation() { return operation; }
 
     virtual string toStr() override
     {
@@ -407,6 +412,10 @@ public:
             //------ Verificação Semantica 3--------
             checkUnaryPalavra(noh);
             checkUnaryBolean(noh);
+            if (dynamic_cast<OpBinaria *>(c))
+            {
+                CheckBinaryOp(c);
+            }
             check(c);
         }
 
@@ -597,6 +606,68 @@ public:
                     return;
                 }
             }
+            /*
+            Caso a atribuição seja de um unário
+            */
+            Unario *aun, *un = dynamic_cast<Unario *>(n);
+
+            if (un)
+            {
+                while (un != NULL)
+                {
+                    aun = un;
+                    un = dynamic_cast<Unario *>(un->getNode());
+                }
+
+                Node *aunn = aun->getNode();
+                if (dynamic_cast<Inteiro *>(aunn))
+                {
+                    symbolsInt.insert(var->getName());
+                    return;
+                }
+                if (dynamic_cast<Pf *>(aunn))
+                {
+                    symbolsPf.insert(var->getName());
+                    return;
+                }
+                if (dynamic_cast<Palavra *>(aunn))
+                {
+                    symbolsPal.insert(var->getName());
+                    return;
+                }
+                if (dynamic_cast<Boleano *>(aunn))
+                {
+                    symbolsBol.insert(var->getName());
+                    return;
+                }
+
+                Id *uid = dynamic_cast<Id *>(aunn);
+                if (uid)
+                {
+                    if (symbolsInt.count(uid->getName()) != 0)
+                    {
+                        symbolsInt.insert(var->getName());
+                        return;
+                    }
+                    if (symbolsPf.count(uid->getName()) != 0)
+                    {
+                        symbolsPf.insert(var->getName());
+                        return;
+                    }
+                    if (symbolsPal.count(uid->getName()) != 0)
+                    {
+                        symbolsPal.insert(var->getName());
+                        return;
+                    }
+                    if (symbolsBol.count(uid->getName()) != 0)
+                    {
+                        symbolsBol.insert(var->getName());
+                        return;
+                    }
+                }
+
+                // todo
+            }
         }
         //------ Fim Verificação Semantica 2--------
     }
@@ -646,7 +717,7 @@ public:
         Verifica se existe um unário
         cujo conteúdo do nó seja uma string.
         Se for uma string apenas, substitui o
-         nó unário por um nó do tipo Palavra
+        nó unário por um nó do tipo Palavra
         */
         int n_toDelete = 0;
 
@@ -673,13 +744,13 @@ public:
         }
     }
 
-        void checkUnaryBolean(Node *noh)
+    void checkUnaryBolean(Node *noh)
     { // recebe o noh acima do noh unário
         /*
         Verifica se existe um unário
         cujo conteúdo do nó seja uma string.
-        Se for uma string apenas, substitui o
-         nó unário por um nó do tipo Palavra
+        Se for uma boleano apenas, substitui o
+        nó unário por um nó do tipo Boleano
         */
         int n_toDelete = 0;
 
@@ -704,5 +775,159 @@ public:
             }
             n_toDelete++;
         }
+    }
+
+    string getNameNode(Node *noh)
+    {
+        /*  retorna o nome do tipo de noh recebido  */
+        Unario *un = dynamic_cast<Unario *>(noh);
+        if (un)
+        {
+            return getNameNode(un->getNode());
+        }
+        Id *id = dynamic_cast<Id *>(noh);
+        if (id)
+        {
+            if (symbolsInt.count(id->getName()) != 0)
+            {
+                return "Inteiro";
+            }
+            if (symbolsPf.count(id->getName()) != 0)
+            {
+                return "Ponto Flutuante";
+            }
+            if (symbolsBol.count(id->getName()) != 0)
+            {
+                return "Boleano";
+            }
+            if (symbolsPal.count(id->getName()) != 0)
+            {
+                return "Palavra";
+            }
+        }
+
+        if (dynamic_cast<Inteiro *>(noh))
+        {
+            return "Inteiro";
+        }
+        if (dynamic_cast<Pf *>(noh))
+        {
+            return "Ponto Flutuante";
+        }
+        if (dynamic_cast<Boleano *>(noh))
+        {
+            return "Boleano";
+        }
+        if (dynamic_cast<Palavra *>(noh))
+        {
+            return "Palavra";
+        }
+
+        OpBinaria *opb = dynamic_cast<OpBinaria *>(noh);
+        if (opb)
+        {
+            return string(getNameNode(opb->getNode1()) + " " + opb->getOperation() + " " + getNameNode(opb->getNode2()));
+        }
+
+        return " ";
+    }
+
+    int CheckBinaryOp(Node *noh)
+    { /*
+        Verifica se toda a expressão possui o mesmo tipo
+        de variavel
+        P.e.
+        --------
+        a=10;
+        b=10.;
+        c=a+b;
+        -------
+        a pertence ao conjunto dos Inteiros e b ao conjunto
+        dos Pontos Flutuantes(PF), logo, c pode possuir tanto aos
+        inteiros quanto aos PF. Portanto se é gerado um erro semântico
+        */
+
+        /*  Numeros de retorno:
+                Inteiro = 0
+                PF = 1
+                Boleano = 2
+                Palavra = 3 */
+
+        /* Tenta converter em Unario, senão mantem
+        o mesmo tipo de noh passado por parametro
+        */
+        Node *aux = noh;
+        Unario *un = dynamic_cast<Unario *>(noh);
+        if (un)
+        {
+            return CheckBinaryOp(un->getNode());
+        }
+
+        if (dynamic_cast<Inteiro *>(aux))
+        {
+            return 0;
+        }
+        if (dynamic_cast<Pf *>(aux))
+        {
+            return 1;
+        }
+        if (dynamic_cast<Boleano *>(aux))
+        {
+            return 2;
+        }
+        if (dynamic_cast<Palavra *>(aux))
+        {
+            return 3;
+        }
+
+        /*  Caso seja encontrado um id,
+            verifica em qual container(inteiro, pf, boleano, palavra)
+            está contido tal id
+        */
+        Id *id = dynamic_cast<Id *>(aux);
+
+        if (id)
+        {
+            if (symbolsInt.count(id->getName()) != 0)
+            {
+                return 0;
+            }
+            if (symbolsPf.count(id->getName()) != 0)
+            {
+                return 1;
+            }
+            if (symbolsBol.count(id->getName()) != 0)
+            {
+                return 3;
+            }
+            if (symbolsPal.count(id->getName()) != 0)
+            {
+                return 4;
+            }
+        }
+
+        OpBinaria *ob = dynamic_cast<OpBinaria *>(noh);
+        if (ob)
+        {
+            if (CheckBinaryOp(ob->getNode1()) != CheckBinaryOp(ob->getNode2()))
+            {
+                error_count++;
+                cout << build_file_name
+                     << " "
+                     << ob->getLineNo()
+                     << ":0: Erro Semântico:  Operações entre ["
+                     << getNameNode(ob->getNode1())
+                     << "] e ["
+                     << getNameNode(ob->getNode2())
+                     << "] não são válidas!"
+                     << endl;
+                return __INT_MAX__;
+            }
+            else
+            {
+                return CheckBinaryOp(ob->getNode1());
+            }
+        }
+        return __INT_MAX__;
     }
 };
