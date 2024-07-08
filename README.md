@@ -32,31 +32,31 @@ Materia de Compiladores durante a faculdade de Ciência da Computação
 >>>`Erro semântico: Não use apenas uma variável do tipo [Palavra] em uma Condição`
 
 > ### 3. Verificação de unários que contenham apenas Boleano ou String
-    > * Verifica se existe algum Unário com conteúdo apenas de string
-    >> Por exemplo:  
-    >>`a= -+--"abc";`  
-    >>`b=---falso;`  
-    >
-    > Este únario será convertido em apenas um nó comum de string/boleano na árvore sintática.  
-    >> Portanto o código acima é equivalente ao seguinte código:  
-    >>`a= "abc";`  
-    >>`a= falso;`  
-    >>
-    >>> ### retorno:  
-    >>> Esta verificação sermântica não mostra algo quando é processada
+> * Verifica se existe algum Unário com conteúdo apenas de string
+>> Por exemplo:  
+>>`a= -+--"abc";`  
+>>`b=---falso;`  
+>
+> Este únario será convertido em apenas um nó comum de string/boleano na árvore sintática.  
+>> Portanto o código acima é equivalente ao seguinte código:  
+>>`a= "abc";`  
+>>`a= falso;`  
+>>
+>>> ### retorno:  
+>>> Esta verificação sermântica não mostra algo quando é processada
 
 > ### 4. Verificação de tipo de dados em operações binárias
-    > * Verifica se as operações binárias são todas do mesmo tipo  
-    >> Por exemplo:  
-    >>`a= 1;`  
-    >>`b= 1.1;`  
-    >>`c= "abc";`  
-    >>`d= a+b/c;`  
-    >>
-    >>> ### retorno:  
-    >>> `Erro Semântico:  Operações entre [Ponto Flutuante] e [Palavra] não são válidas!`   
-    >>>` Erro Semântico:  Operações entre [Inteiro] e [Ponto Flutuante / Palavra] não são válidas!`  
-    >>>`Erro Semântico:  Operações entre [Ponto Flutuante] e [Palavra] não são válidas!`  
+> * Verifica se as operações binárias são todas do mesmo tipo  
+>> Por exemplo:  
+>>`a= 1;`  
+>>`b= 1.1;`  
+>>`c= "abc";`  
+>>`d= a+b/c;`  
+>>
+>>> ### retorno:  
+>>> `Erro Semântico:  Operações entre [Ponto Flutuante] e [Palavra] não são válidas!`   
+>>>` Erro Semântico:  Operações entre [Inteiro] e [Ponto Flutuante / Palavra] não são válidas!`  
+>>>`Erro Semântico:  Operações entre [Ponto Flutuante] e [Palavra] não são válidas!`  
 
 
 
