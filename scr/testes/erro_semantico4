@@ -1,0 +1,9 @@
+//Aqui são exemplificados exemplos de erros semanticos
+//Para consultar o que cada erro semantico verifica
+//consulte o arquivo README.
+
+//erro semantico 4
+a= 1;
+b= 1.1;
+c= "abc";
+d= a+b/c;

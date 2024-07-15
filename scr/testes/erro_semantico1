@@ -1,0 +1,8 @@
+//Aqui são exemplificados exemplos de erros semanticos
+//Para consultar o que cada erro semantico verifica
+//consulte o arquivo README.
+
+
+// erro semantico 1
+mostra a1;
+a1=10;

@@ -2,12 +2,6 @@
 //Para consultar o que cada erro semantico verifica
 //consulte o arquivo README.
 
-
-// erro semantico 1
-mostra a1;
-a1=10;
-
-
 //erro semantico 2
 b2="verdadeiro";
 c2=0;
@@ -21,16 +15,3 @@ enquanto("true"){
    c2=c2+1;
 }
 
-//erro semantico 3
-
-a3 =----falso;
-b3 =-+-+-+"string";
-
-mostra a3;
-mostra b3;
-
-//erro semantico 4
-se(a3<b3){
-    mostra a3;
-    mostra b3;
-}

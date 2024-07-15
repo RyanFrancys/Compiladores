@@ -1,0 +1,11 @@
+//Aqui são exemplificados exemplos de erros semanticos
+//Para consultar o que cada erro semantico verifica
+//consulte o arquivo README.
+
+//erro semantico 3
+
+a3 =----falso;
+b3 =-+-+-+"string";
+
+mostra a3;
+mostra b3;
